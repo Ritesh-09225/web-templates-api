@@ -1,0 +1,358 @@
+[
+  {
+    "id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+    "name": "Modern SaaS Landing Page",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "hero": {
+          "type": "object",
+          "properties": {
+            "headline": {
+              "type": "string",
+              "description": "Main catchy headline (punchy, benefit-driven)"
+            },
+            "subheadline": {
+              "type": "string",
+              "description": "Secondary explanatory text about how it works"
+            },
+            "cta_text": {
+              "type": "string",
+              "description": "Action-oriented call to action text"
+            }
+          },
+          "required": [
+            "headline",
+            "subheadline",
+            "cta_text"
+          ],
+          "additionalProperties": false
+        },
+        "features": {
+          "type": "object",
+          "properties": {
+            "section_title": {
+              "type": "string",
+              "description": "Title for the features section"
+            },
+            "items": {
+              "type": "array",
+              "description": "List of exactly 3 core features",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Short feature title"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Detailed feature description"
+                  }
+                },
+                "required": [
+                  "title",
+                  "description"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 3,
+              "maxItems": 3
+            }
+          },
+          "required": [
+            "section_title",
+            "items"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "hero",
+        "features"
+      ],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{hero.headline}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <style>\n    .glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }\n  </style>\n</head>\n<body class=\"bg-slate-950 text-white font-sans selection:bg-indigo-500 selection:text-white\">\n  <!-- Hero Section -->\n  <main class=\"relative overflow-hidden min-h-screen flex flex-col justify-center items-center px-4 py-24 sm:px-6 lg:px-8\">\n    <div class=\"absolute top-[-10%] left-[-10%] w-96 h-96 bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30\"></div>\n    <div class=\"absolute top-[-10%] right-[-10%] w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30\"></div>\n    \n    <div class=\"z-10 max-w-4xl mx-auto text-center\">\n      <h1 class=\"text-5xl md:text-7xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400\">\n        {{hero.headline}}\n      </h1>\n      <p class=\"mt-4 text-xl md:text-2xl text-slate-300 max-w-2xl mx-auto mb-10\">\n        {{hero.subheadline}}\n      </p>\n      <div class=\"flex justify-center gap-4\">\n        <a href=\"#\" class=\"rounded-full px-8 py-4 text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-500 transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)]\">\n          {{hero.cta_text}}\n        </a>\n      </div>\n    </div>\n  </main>\n\n  <!-- Features Section -->\n  <section class=\"py-24 px-6 bg-slate-900 border-t border-slate-800\">\n    <div class=\"max-w-7xl mx-auto\">\n      <h2 class=\"text-4xl font-bold text-center mb-16\">{{features.section_title}}</h2>\n      <div class=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n        {{#each features.items}}\n        <div class=\"glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300\">\n          <div class=\"w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center mb-6\">\n            <svg class=\"w-6 h-6 text-indigo-400\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n              <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M13 10V3L4 14h7v7l9-11h-7z\" />\n            </svg>\n          </div>\n          <h3 class=\"text-2xl font-bold mb-4\">{{this.title}}</h3>\n          <p class=\"text-slate-400 leading-relaxed\">{{this.description}}</p>\n        </div>\n        {{/each}}\n      </div>\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "d9b2d63d-a233-4123-8478-3de37130eb44",
+    "name": "Local Business / Service",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "business_name": {
+          "type": "string",
+          "description": "Name of the business"
+        },
+        "hero": {
+          "type": "object",
+          "properties": {
+            "headline": {
+              "type": "string",
+              "description": "Main headline offering the service"
+            },
+            "description": {
+              "type": "string",
+              "description": "Why customers should choose them"
+            },
+            "phone_number": {
+              "type": "string",
+              "description": "Fictional local phone number"
+            }
+          },
+          "required": [
+            "headline",
+            "description",
+            "phone_number"
+          ],
+          "additionalProperties": false
+        },
+        "services": {
+          "type": "array",
+          "description": "List of 4 services offered",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "summary"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": [
+        "business_name",
+        "hero",
+        "services"
+      ],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{business_name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-amber-50 text-slate-800 font-sans\">\n  <nav class=\"bg-white shadow-sm p-6 sticky top-0 z-50\">\n    <div class=\"max-w-6xl mx-auto flex justify-between items-center\">\n      <span class=\"text-2xl font-extrabold text-emerald-700 tracking-tight\">{{business_name}}</span>\n      <a href=\"tel:{{hero.phone_number}}\" class=\"font-bold text-emerald-600 hover:text-emerald-800 transition-colors\">Call: {{hero.phone_number}}</a>\n    </div>\n  </nav>\n  \n  <header class=\"bg-emerald-700 text-white py-24 px-6 text-center\">\n    <div class=\"max-w-4xl mx-auto\">\n      <h1 class=\"text-5xl md:text-6xl font-extrabold mb-6\">{{hero.headline}}</h1>\n      <p class=\"text-xl md:text-2xl text-emerald-100 mb-10 max-w-2xl mx-auto\">{{hero.description}}</p>\n      <button class=\"bg-amber-400 hover:bg-amber-500 text-amber-950 font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1\">\n        Request a Free Quote\n      </button>\n    </div>\n  </header>\n\n  <section class=\"py-20 px-6 max-w-6xl mx-auto\">\n    <div class=\"text-center mb-16\">\n      <h2 class=\"text-4xl font-bold text-slate-900\">Our Services</h2>\n      <div class=\"w-24 h-1 bg-amber-400 mx-auto mt-6\"></div>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-10\">\n      {{#each services}}\n      <div class=\"bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-shadow border-t-4 border-emerald-500 flex flex-col h-full\">\n        <h3 class=\"text-2xl font-bold text-emerald-800 mb-4\">{{this.name}}</h3>\n        <p class=\"text-slate-600 text-lg flex-grow\">{{this.summary}}</p>\n      </div>\n      {{/each}}\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "b3d4b0df-81f0-47df-b635-6fc30a4702c0",
+    "name": "Personal Portfolio",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Person's full name"
+            },
+            "role": {
+              "type": "string",
+              "description": "Job title or profession"
+            },
+            "bio": {
+              "type": "string",
+              "description": "Short introductory bio"
+            },
+            "contact_email": {
+              "type": "string",
+              "description": "Email address"
+            }
+          },
+          "required": [
+            "name",
+            "role",
+            "bio",
+            "contact_email"
+          ],
+          "additionalProperties": false
+        },
+        "projects": {
+          "type": "array",
+          "description": "List of exactly 3 portfolio projects",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "tech_stack": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "description",
+              "tech_stack"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": [
+        "profile",
+        "projects"
+      ],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\" class=\"scroll-smooth\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{profile.name}} - Portfolio</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-white text-gray-900 font-sans antialiased\">\n  <header class=\"py-16 px-6 lg:px-24 border-b border-gray-100\">\n    <div class=\"max-w-4xl\">\n      <h1 class=\"text-5xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-4\">\n        Hi, I'm {{profile.name}}\n      </h1>\n      <h2 class=\"text-2xl lg:text-3xl text-gray-500 font-medium mb-8\">\n        {{profile.role}}\n      </h2>\n      <p class=\"text-xl text-gray-600 max-w-2xl leading-relaxed mb-10\">\n        {{profile.bio}}\n      </p>\n      <a href=\"mailto:{{profile.contact_email}}\" class=\"inline-block bg-black text-white px-8 py-4 rounded-lg font-medium hover:bg-gray-800 transition-colors\">\n        Get in touch\n      </a>\n    </div>\n  </header>\n\n  <main class=\"py-20 px-6 lg:px-24 bg-gray-50\">\n    <div class=\"max-w-5xl\">\n      <h3 class=\"text-3xl font-bold mb-12 text-gray-900\">Selected Work</h3>\n      <div class=\"space-y-16\">\n        {{#each projects}}\n        <article class=\"group relative bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow\">\n          <h4 class=\"text-2xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors\">{{this.title}}</h4>\n          <p class=\"text-gray-600 text-lg mb-6 leading-relaxed max-w-3xl\">{{this.description}}</p>\n          <div class=\"text-sm font-semibold text-gray-500 uppercase tracking-wider\">\n            Built with: <span class=\"text-gray-800\">{{this.tech_stack}}</span>\n          </div>\n        </article>\n        {{/each}}\n      </div>\n    </div>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "3522b790-65f2-4494-9193-de2ee91f92d5",
+    "name": "E-commerce Product Page",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "price": {
+              "type": "string",
+              "description": "Price including currency symbol"
+            },
+            "description": {
+              "type": "string",
+              "description": "Detailed product description"
+            },
+            "category": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "price",
+            "description",
+            "category"
+          ],
+          "additionalProperties": false
+        },
+        "features": {
+          "type": "array",
+          "description": "4 Key features of the product",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "detail": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "detail"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": [
+        "product",
+        "features"
+      ],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{product.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-gray-50 text-gray-900\">\n  <nav class=\"bg-white p-4 shadow-sm\">\n    <div class=\"max-w-7xl mx-auto font-bold text-xl tracking-tight\">MyShop</div>\n  </nav>\n\n  <main class=\"max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8\">\n    <div class=\"lg:grid lg:grid-cols-2 lg:gap-x-8\">\n      <!-- Image gallery -->\n      <div class=\"bg-gray-200 rounded-lg aspect-square flex items-center justify-center\">\n        <span class=\"text-gray-400 font-medium\">[Product Image Placeholder]</span>\n      </div>\n\n      <!-- Product info -->\n      <div class=\"mt-10 px-4 sm:px-0 lg:mt-0\">\n        <h2 class=\"text-sm text-indigo-600 font-semibold tracking-wide uppercase\">{{product.category}}</h2>\n        <h1 class=\"mt-2 text-4xl font-extrabold tracking-tight text-gray-900\">{{product.name}}</h1>\n        <p class=\"mt-4 text-3xl text-gray-900\">{{product.price}}</p>\n\n        <div class=\"mt-6\">\n          <h3 class=\"sr-only\">Description</h3>\n          <p class=\"text-base text-gray-700 leading-relaxed\">{{product.description}}</p>\n        </div>\n\n        <form class=\"mt-10\">\n          <button type=\"button\" class=\"w-full bg-indigo-600 border border-transparent rounded-md py-4 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-sm\">\n            Add to cart\n          </button>\n        </form>\n\n        <div class=\"mt-10 border-t border-gray-200 pt-10\">\n          <h3 class=\"text-lg font-medium text-gray-900 mb-6\">Key Features</h3>\n          <div class=\"grid grid-cols-1 gap-6 sm:grid-cols-2\">\n            {{#each features}}\n            <div>\n              <dt class=\"font-medium text-gray-900\">{{this.title}}</dt>\n              <dd class=\"mt-2 text-sm text-gray-500\">{{this.detail}}</dd>\n            </div>\n            {{/each}}\n          </div>\n        </div>\n      </div>\n    </div>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "688c0859-81f0-48d0-b6c9-bd410d262104",
+    "name": "Blog/Newsletter Layout",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "blog": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "title",
+            "subtitle"
+          ],
+          "additionalProperties": false
+        },
+        "featured_post": {
+          "type": "object",
+          "properties": {
+            "headline": {
+              "type": "string"
+            },
+            "excerpt": {
+              "type": "string"
+            },
+            "author": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "headline",
+            "excerpt",
+            "author",
+            "date"
+          ],
+          "additionalProperties": false
+        },
+        "articles": {
+          "type": "array",
+          "description": "3 recent articles",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "category"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": [
+        "blog",
+        "featured_post",
+        "articles"
+      ],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{blog.title}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-white font-serif text-gray-900\">\n  <header class=\"py-10 border-b border-gray-200 text-center px-4\">\n    <h1 class=\"text-4xl md:text-6xl font-bold tracking-tight text-gray-900\">{{blog.title}}</h1>\n    <p class=\"mt-4 text-xl text-gray-500\">{{blog.subtitle}}</p>\n  </header>\n\n  <main class=\"max-w-6xl mx-auto py-12 px-6\">\n    <section class=\"mb-16\">\n      <h2 class=\"text-sm font-bold tracking-widest text-gray-400 uppercase mb-6\">Featured Story</h2>\n      <article class=\"grid grid-cols-1 md:grid-cols-2 gap-10 items-center\">\n        <div class=\"bg-gray-100 aspect-video md:aspect-square w-full rounded-xl flex items-center justify-center text-gray-400\">\n          [Image]\n        </div>\n        <div>\n          <h3 class=\"text-3xl md:text-5xl font-bold leading-tight mb-6\">{{featured_post.headline}}</h3>\n          <p class=\"text-lg text-gray-600 mb-6 leading-relaxed\">{{featured_post.excerpt}}</p>\n          <div class=\"flex items-center text-sm text-gray-500 font-sans\">\n            <span class=\"font-bold text-gray-900 mr-2\">{{featured_post.author}}</span>\n            <span>&middot;</span>\n            <span class=\"ml-2\">{{featured_post.date}}</span>\n          </div>\n        </div>\n      </article>\n    </section>\n\n    <section class=\"border-t border-gray-200 pt-16\">\n      <h2 class=\"text-sm font-bold tracking-widest text-gray-400 uppercase mb-8\">Recent Articles</h2>\n      <div class=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n        {{#each articles}}\n        <article class=\"group\">\n          <div class=\"text-xs font-bold text-red-600 uppercase tracking-wide mb-3 font-sans\">{{this.category}}</div>\n          <h4 class=\"text-xl font-bold leading-snug group-hover:underline decoration-2 decoration-gray-300 underline-offset-4\">{{this.title}}</h4>\n        </article>\n        {{/each}}\n      </div>\n    </section>\n  </main>\n</body>\n</html>\n"
+  }
+]
