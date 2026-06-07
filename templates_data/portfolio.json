@@ -1,0 +1,176 @@
+[
+  {
+    "id": "b3d4b0df-81f0-47df-b635-6fc30a4702c0",
+    "name": "Personal Portfolio V1 (Clean)",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "role": { "type": "string" },
+            "bio": { "type": "string" },
+            "contact_email": { "type": "string" }
+          },
+          "required": ["name", "role", "bio", "contact_email"],
+          "additionalProperties": false
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "description": { "type": "string" },
+              "tech_stack": { "type": "string" }
+            },
+            "required": ["title", "description", "tech_stack"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": ["profile", "projects"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\" class=\"scroll-smooth\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{profile.name}} - Portfolio</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-white text-gray-900 font-sans antialiased\">\n  <header class=\"py-16 px-6 lg:px-24 border-b border-gray-100\">\n    <div class=\"max-w-4xl\">\n      <h1 class=\"text-5xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-4\">\n        Hi, I'm {{profile.name}}\n      </h1>\n      <h2 class=\"text-2xl lg:text-3xl text-gray-500 font-medium mb-8\">\n        {{profile.role}}\n      </h2>\n      <p class=\"text-xl text-gray-600 max-w-2xl leading-relaxed mb-10\">\n        {{profile.bio}}\n      </p>\n      <a href=\"mailto:{{profile.contact_email}}\" class=\"inline-block bg-black text-white px-8 py-4 rounded-lg font-medium hover:bg-gray-800 transition-colors\">\n        Get in touch\n      </a>\n    </div>\n  </header>\n\n  <main class=\"py-20 px-6 lg:px-24 bg-gray-50\">\n    <div class=\"max-w-5xl\">\n      <h3 class=\"text-3xl font-bold mb-12 text-gray-900\">Selected Work</h3>\n      <div class=\"space-y-16\">\n        {{#each projects}}\n        <article class=\"group relative bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow\">\n          <h4 class=\"text-2xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors\">{{this.title}}</h4>\n          <p class=\"text-gray-600 text-lg mb-6 leading-relaxed max-w-3xl\">{{this.description}}</p>\n          <div class=\"text-sm font-semibold text-gray-500 uppercase tracking-wider\">\n            Built with: <span class=\"text-gray-800\">{{this.tech_stack}}</span>\n          </div>\n        </article>\n        {{/each}}\n      </div>\n    </div>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "e4a5d8b8-6e54-46c5-b873-1076f8a491d9",
+    "name": "Developer Portfolio V2 (Terminal)",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "dev": {
+          "type": "object",
+          "properties": {
+            "username": { "type": "string" },
+            "status": { "type": "string" },
+            "github_link": { "type": "string" }
+          },
+          "required": ["username", "status", "github_link"],
+          "additionalProperties": false
+        },
+        "repositories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "repo_name": { "type": "string" },
+              "description": { "type": "string" },
+              "language": { "type": "string" }
+            },
+            "required": ["repo_name", "description", "language"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 4
+        }
+      },
+      "required": ["dev", "repositories"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{dev.username}} | Terminal</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Fira Code', monospace; } </style>\n</head>\n<body class=\"bg-[#0d1117] text-[#c9d1d9] p-4 md:p-10 min-h-screen\">\n  <div class=\"max-w-4xl mx-auto border border-[#30363d] rounded-lg bg-[#161b22] shadow-2xl overflow-hidden\">\n    <div class=\"bg-[#21262d] px-4 py-2 border-b border-[#30363d] flex items-center gap-2\">\n      <div class=\"w-3 h-3 rounded-full bg-[#ff5f56]\"></div>\n      <div class=\"w-3 h-3 rounded-full bg-[#ffbd2e]\"></div>\n      <div class=\"w-3 h-3 rounded-full bg-[#27c93f]\"></div>\n      <div class=\"ml-4 text-xs text-[#8b949e]\">bash - {{dev.username}}</div>\n    </div>\n    <div class=\"p-6 md:p-8\">\n      <div class=\"mb-8\">\n        <span class=\"text-[#7ee787]\">guest@network</span>:<span class=\"text-[#79c0ff]\">~</span>$ whoami<br>\n        <span class=\"text-white font-bold text-xl mt-2 inline-block\">{{dev.username}}</span>\n      </div>\n      <div class=\"mb-8\">\n        <span class=\"text-[#7ee787]\">guest@network</span>:<span class=\"text-[#79c0ff]\">~</span>$ cat status.txt<br>\n        <span class=\"text-[#d2a8ff] mt-2 inline-block\">> {{dev.status}}</span>\n      </div>\n      <div class=\"mb-8\">\n        <span class=\"text-[#7ee787]\">guest@network</span>:<span class=\"text-[#79c0ff]\">~</span>$ ls -la ./projects<br>\n        <div class=\"mt-4 grid grid-cols-1 md:grid-cols-2 gap-4\">\n          {{#each repositories}}\n          <div class=\"border border-[#30363d] p-4 rounded hover:bg-[#21262d] transition\">\n            <div class=\"text-[#58a6ff] font-bold mb-2\">./{{this.repo_name}}</div>\n            <p class=\"text-sm text-[#8b949e] mb-4\">{{this.description}}</p>\n            <div class=\"text-xs flex items-center gap-2\">\n              <span class=\"w-2 h-2 rounded-full bg-yellow-400\"></span> {{this.language}}\n            </div>\n          </div>\n          {{/each}}\n        </div>\n      </div>\n      <div>\n        <span class=\"text-[#7ee787]\">guest@network</span>:<span class=\"text-[#79c0ff]\">~</span>$ <span class=\"animate-pulse\">_</span>\n      </div>\n    </div>\n  </div>\n</body>\n</html>\n"
+  },
+  {
+    "id": "18f2d521-5a2a-41f2-bd5d-eb10b6d21c43",
+    "name": "Creative Designer Portfolio V3",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "designer": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "manifesto": { "type": "string" }
+          },
+          "required": ["name", "manifesto"],
+          "additionalProperties": false
+        },
+        "works": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "client": { "type": "string" },
+              "category": { "type": "string" }
+            },
+            "required": ["client", "category"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["designer", "works"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{designer.name}} - Design</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@400;500&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Inter', sans-serif; background-color: #f4f0ea; } h1, h2, h3, .syne { font-family: 'Syne', sans-serif; } </style>\n</head>\n<body class=\"text-[#1a1a1a]\">\n  <nav class=\"fixed w-full z-50 mix-blend-difference text-white p-6 md:p-12 flex justify-between items-center\">\n    <div class=\"font-bold text-xl uppercase tracking-widest syne\">{{designer.name}}</div>\n    <div class=\"text-sm font-medium\">Work / About / Contact</div>\n  </nav>\n\n  <header class=\"min-h-[80vh] flex items-center px-6 md:px-12 pt-32\">\n    <h1 class=\"text-5xl md:text-8xl lg:text-[10rem] font-extrabold syne leading-[0.9] tracking-tighter w-full uppercase break-words\">\n      {{designer.manifesto}}\n    </h1>\n  </header>\n\n  <section class=\"px-6 md:px-12 py-20\">\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16\">\n      {{#each works}}\n      <div class=\"group cursor-pointer {{#if @first}}md:mt-24{{/if}}\">\n        <div class=\"w-full aspect-[4/5] bg-[#e1dad2] overflow-hidden relative\">\n          <div class=\"absolute inset-0 bg-black/10 group-hover:bg-transparent transition duration-500\"></div>\n          <div class=\"absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500 z-10\">\n             <span class=\"bg-white text-black px-6 py-3 rounded-full font-bold uppercase text-sm\">View Project</span>\n          </div>\n        </div>\n        <div class=\"mt-6 flex justify-between items-baseline\">\n          <h2 class=\"text-3xl syne font-bold uppercase\">{{this.client}}</h2>\n          <span class=\"text-sm text-gray-500 uppercase tracking-widest\">{{this.category}}</span>\n        </div>\n      </div>\n      {{/each}}\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "e6f47b2c-9a4f-4318-8f5b-1b96f1b3e8a4",
+    "name": "Writer / Journalist V4",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "publications": { "type": "string" }
+          },
+          "required": ["name", "publications"],
+          "additionalProperties": false
+        },
+        "articles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "headline": { "type": "string" },
+              "excerpt": { "type": "string" },
+              "published_at": { "type": "string" }
+            },
+            "required": ["headline", "excerpt", "published_at"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": ["author", "articles"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{author.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&family=Open+Sans:wght@400;600&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Open Sans', sans-serif; background: #fffcf8; } h1, h2, h3, .serif { font-family: 'Merriweather', serif; } </style>\n</head>\n<body class=\"text-gray-900\">\n  <div class=\"max-w-3xl mx-auto px-6 py-12 md:py-24\">\n    <header class=\"border-b-2 border-gray-900 pb-12 mb-12\">\n      <h1 class=\"text-5xl md:text-6xl font-bold serif tracking-tight mb-4 text-center\">{{author.name}}</h1>\n      <p class=\"text-center text-gray-500 uppercase tracking-widest text-sm font-semibold\">Writing for: {{author.publications}}</p>\n    </header>\n\n    <main>\n      <h2 class=\"text-sm uppercase tracking-widest text-gray-400 font-bold mb-10 text-center\">Selected Writing</h2>\n      <div class=\"space-y-16\">\n        {{#each articles}}\n        <article class=\"group\">\n          <time class=\"block text-xs uppercase tracking-widest text-gray-400 mb-3\">{{this.published_at}}</time>\n          <h3 class=\"text-2xl md:text-3xl font-bold serif leading-snug mb-4 group-hover:text-blue-800 transition-colors cursor-pointer\">\n            {{this.headline}}\n          </h3>\n          <p class=\"text-lg text-gray-600 leading-relaxed serif font-light\">\n            {{this.excerpt}}\n          </p>\n        </article>\n        {{/each}}\n      </div>\n    </main>\n  </div>\n</body>\n</html>\n"
+  },
+  {
+    "id": "cd0e29b1-7a6c-48c9-8d4e-1283c8a9010e",
+    "name": "Photographer / Video V5",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "creator": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "niche": { "type": "string" },
+            "location": { "type": "string" }
+          },
+          "required": ["name", "niche", "location"],
+          "additionalProperties": false
+        },
+        "gallery_text": { "type": "string" }
+      },
+      "required": ["creator", "gallery_text"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{creator.name}} | {{creator.niche}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Raleway', sans-serif; } .cinzel { font-family: 'Cinzel', serif; } </style>\n</head>\n<body class=\"bg-black text-white h-screen overflow-hidden\">\n  <div class=\"absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542051812871-757500820428?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-60\"></div>\n  <div class=\"absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80\"></div>\n  \n  <div class=\"relative z-10 h-full flex flex-col justify-between p-8 md:p-16\">\n    <header class=\"flex justify-between items-start\">\n      <div>\n        <h1 class=\"text-4xl md:text-5xl cinzel tracking-widest uppercase\">{{creator.name}}</h1>\n        <p class=\"mt-2 text-gray-300 tracking-wider text-sm\">{{creator.niche}} &middot; {{creator.location}}</p>\n      </div>\n      <nav class=\"hidden md:flex gap-8 text-sm uppercase tracking-widest\">\n        <a href=\"#\" class=\"hover:text-gray-300\">Portfolio</a>\n        <a href=\"#\" class=\"hover:text-gray-300\">About</a>\n        <a href=\"#\" class=\"hover:text-gray-300\">Contact</a>\n      </nav>\n    </header>\n\n    <div class=\"flex justify-end\">\n      <div class=\"text-right max-w-sm\">\n        <p class=\"text-lg md:text-xl font-light leading-relaxed mb-6\">\n          \"{{gallery_text}}\"\n        </p>\n        <button class=\"border border-white/50 px-8 py-3 uppercase tracking-widest text-sm hover:bg-white hover:text-black transition duration-300 backdrop-blur-sm\">\n          Enter Gallery\n        </button>\n      </div>\n    </div>\n  </div>\n</body>\n</html>\n"
+  }
+]

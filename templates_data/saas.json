@@ -1,0 +1,197 @@
+[
+  {
+    "id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+    "name": "Modern SaaS Landing Page V1 (Dark Glass)",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "hero": {
+          "type": "object",
+          "properties": {
+            "headline": { "type": "string" },
+            "subheadline": { "type": "string" },
+            "cta_text": { "type": "string" }
+          },
+          "required": ["headline", "subheadline", "cta_text"],
+          "additionalProperties": false
+        },
+        "features": {
+          "type": "object",
+          "properties": {
+            "section_title": { "type": "string" },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "title": { "type": "string" },
+                  "description": { "type": "string" }
+                },
+                "required": ["title", "description"],
+                "additionalProperties": false
+              },
+              "minItems": 3,
+              "maxItems": 3
+            }
+          },
+          "required": ["section_title", "items"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["hero", "features"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{hero.headline}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <style>\n    .glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }\n  </style>\n</head>\n<body class=\"bg-slate-950 text-white font-sans selection:bg-indigo-500 selection:text-white\">\n  <main class=\"relative overflow-hidden min-h-screen flex flex-col justify-center items-center px-4 py-24 sm:px-6 lg:px-8\">\n    <div class=\"absolute top-[-10%] left-[-10%] w-96 h-96 bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30\"></div>\n    <div class=\"absolute top-[-10%] right-[-10%] w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30\"></div>\n    \n    <div class=\"z-10 max-w-4xl mx-auto text-center\">\n      <h1 class=\"text-5xl md:text-7xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400\">\n        {{hero.headline}}\n      </h1>\n      <p class=\"mt-4 text-xl md:text-2xl text-slate-300 max-w-2xl mx-auto mb-10\">\n        {{hero.subheadline}}\n      </p>\n      <div class=\"flex justify-center gap-4\">\n        <a href=\"#\" class=\"rounded-full px-8 py-4 text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-500 transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)]\">\n          {{hero.cta_text}}\n        </a>\n      </div>\n    </div>\n  </main>\n\n  <section class=\"py-24 px-6 bg-slate-900 border-t border-slate-800\">\n    <div class=\"max-w-7xl mx-auto\">\n      <h2 class=\"text-4xl font-bold text-center mb-16\">{{features.section_title}}</h2>\n      <div class=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n        {{#each features.items}}\n        <div class=\"glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300\">\n          <div class=\"w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center mb-6\">\n            <svg class=\"w-6 h-6 text-indigo-400\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n              <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M13 10V3L4 14h7v7l9-11h-7z\" />\n            </svg>\n          </div>\n          <h3 class=\"text-2xl font-bold mb-4\">{{this.title}}</h3>\n          <p class=\"text-slate-400 leading-relaxed\">{{this.description}}</p>\n        </div>\n        {{/each}}\n      </div>\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "e43b1716-e41c-4b5c-bd6f-004351aeb1e8",
+    "name": "Clean & Minimal SaaS Landing Page V2",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "hero": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "primary_cta": { "type": "string" },
+            "secondary_cta": { "type": "string" }
+          },
+          "required": ["title", "description", "primary_cta", "secondary_cta"],
+          "additionalProperties": false
+        },
+        "benefits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "heading": { "type": "string" },
+              "text": { "type": "string" }
+            },
+            "required": ["heading", "text"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": ["hero", "benefits"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{hero.title}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Inter', sans-serif; } </style>\n</head>\n<body class=\"bg-white text-gray-900\">\n  <nav class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center\">\n    <div class=\"font-bold text-xl tracking-tighter\">SaaS.Inc</div>\n    <div class=\"flex gap-4\">\n      <a href=\"#\" class=\"text-gray-600 hover:text-gray-900 px-4 py-2\">Login</a>\n      <a href=\"#\" class=\"bg-black text-white px-5 py-2 rounded-md font-medium hover:bg-gray-800\">{{hero.primary_cta}}</a>\n    </div>\n  </nav>\n\n  <header class=\"pt-20 pb-32 text-center max-w-5xl mx-auto px-4\">\n    <h1 class=\"text-6xl md:text-8xl font-extrabold tracking-tight mb-8 leading-tight\">{{hero.title}}</h1>\n    <p class=\"text-xl md:text-2xl text-gray-500 mb-12 max-w-3xl mx-auto leading-relaxed\">{{hero.description}}</p>\n    <div class=\"flex flex-col sm:flex-row justify-center gap-4\">\n      <a href=\"#\" class=\"bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition\">{{hero.primary_cta}}</a>\n      <a href=\"#\" class=\"bg-gray-100 text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-200 transition\">{{hero.secondary_cta}}</a>\n    </div>\n    <div class=\"mt-20 w-full h-[500px] bg-gray-100 rounded-3xl border border-gray-200 shadow-2xl flex items-center justify-center\">\n      <span class=\"text-gray-400 font-medium text-lg\">[App Dashboard Preview]</span>\n    </div>\n  </header>\n\n  <section class=\"py-24 bg-gray-50\">\n    <div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\">\n      <div class=\"grid grid-cols-1 md:grid-cols-3 gap-12\">\n        {{#each benefits}}\n        <div class=\"text-left\">\n          <div class=\"w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold text-xl\">✓</div>\n          <h3 class=\"text-2xl font-bold mb-4\">{{this.heading}}</h3>\n          <p class=\"text-gray-600 text-lg leading-relaxed\">{{this.text}}</p>\n        </div>\n        {{/each}}\n      </div>\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "b1a134d1-12c5-4d7a-b5e1-5e5893f4e1f7",
+    "name": "Vibrant & Playful SaaS V3",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "badge": { "type": "string" },
+            "main_text": { "type": "string" },
+            "sub_text": { "type": "string" },
+            "button_text": { "type": "string" }
+          },
+          "required": ["badge", "main_text", "sub_text", "button_text"],
+          "additionalProperties": false
+        },
+        "highlights": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "desc": { "type": "string" }
+            },
+            "required": ["title", "desc"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": ["header", "highlights"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{header.main_text}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Outfit', sans-serif; } </style>\n</head>\n<body class=\"bg-rose-50 text-slate-800\">\n  <div class=\"min-h-screen bg-gradient-to-br from-rose-100 via-purple-100 to-amber-100\">\n    <nav class=\"p-6 flex justify-between items-center max-w-7xl mx-auto\">\n      <div class=\"font-black text-3xl text-rose-600\">YayApp!</div>\n      <button class=\"bg-white text-rose-600 font-bold py-2 px-6 rounded-full shadow-sm hover:shadow-md transition-all\">Login</button>\n    </nav>\n\n    <main class=\"max-w-5xl mx-auto px-6 py-20 text-center\">\n      <span class=\"inline-block py-1 px-4 rounded-full bg-white text-rose-500 font-bold text-sm mb-8 shadow-sm border border-rose-100\">\n        ✨ {{header.badge}}\n      </span>\n      <h1 class=\"text-6xl md:text-8xl font-black mb-8 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-600\">\n        {{header.main_text}}\n      </h1>\n      <p class=\"text-xl md:text-3xl text-slate-600 mb-12 font-medium max-w-3xl mx-auto\">\n        {{header.sub_text}}\n      </p>\n      <button class=\"bg-rose-500 hover:bg-rose-600 text-white text-xl font-bold py-5 px-12 rounded-full shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300\">\n        {{header.button_text}}\n      </button>\n    </main>\n\n    <section class=\"max-w-6xl mx-auto px-6 pb-24\">\n      <div class=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n        {{#each highlights}}\n        <div class=\"bg-white/60 backdrop-blur-md p-10 rounded-3xl border border-white/50 shadow-xl hover:scale-105 transition-transform duration-300\">\n          <h3 class=\"text-2xl font-bold mb-4 text-purple-700\">{{this.title}}</h3>\n          <p class=\"text-slate-600 text-lg\">{{this.desc}}</p>\n        </div>\n        {{/each}}\n      </div>\n    </section>\n  </div>\n</body>\n</html>\n"
+  },
+  {
+    "id": "e2f7b889-1300-47b2-850c-e26b1c4125b2",
+    "name": "Enterprise Professional SaaS V4",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "object",
+          "properties": {
+            "headline": { "type": "string" },
+            "body": { "type": "string" },
+            "cta_primary": { "type": "string" }
+          },
+          "required": ["headline", "body", "cta_primary"],
+          "additionalProperties": false
+        },
+        "stats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "number": { "type": "string" },
+              "label": { "type": "string" }
+            },
+            "required": ["number", "label"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": ["content", "stats"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{content.headline}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Roboto', sans-serif; } </style>\n</head>\n<body class=\"bg-slate-50 text-slate-900\">\n  <nav class=\"bg-white border-b border-slate-200 sticky top-0 z-50\">\n    <div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center\">\n      <div class=\"text-2xl font-bold text-blue-900 tracking-tight\">EnterpriseCorp</div>\n      <button class=\"bg-blue-600 text-white px-5 py-2 rounded font-medium hover:bg-blue-700\">Contact Sales</button>\n    </div>\n  </nav>\n\n  <header class=\"bg-blue-900 text-white pt-24 pb-32\">\n    <div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center\">\n      <div>\n        <h1 class=\"text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6\">\n          {{content.headline}}\n        </h1>\n        <p class=\"text-lg md:text-xl text-blue-200 mb-10 leading-relaxed\">\n          {{content.body}}\n        </p>\n        <div class=\"flex flex-wrap gap-4\">\n          <button class=\"bg-white text-blue-900 px-8 py-4 rounded font-bold hover:bg-blue-50 transition-colors shadow-lg\">\n            {{content.cta_primary}}\n          </button>\n          <button class=\"border border-blue-400 text-white px-8 py-4 rounded font-bold hover:bg-blue-800 transition-colors\">\n            Read Documentation\n          </button>\n        </div>\n      </div>\n      <div class=\"hidden md:block\">\n        <div class=\"bg-slate-800 rounded-lg p-6 shadow-2xl border border-slate-700 h-[400px] flex items-center justify-center\">\n           <span class=\"text-slate-500 font-mono\">// Enterprise Data Visualization</span>\n        </div>\n      </div>\n    </div>\n  </header>\n\n  <section class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16\">\n    <div class=\"bg-white rounded-xl shadow-xl border border-slate-100 p-10\">\n      <div class=\"grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-slate-200\">\n        {{#each stats}}\n        <div class=\"text-center pt-8 md:pt-0\">\n          <div class=\"text-4xl md:text-5xl font-bold text-blue-600 mb-2\">{{this.number}}</div>\n          <div class=\"text-slate-500 font-medium uppercase tracking-wide text-sm\">{{this.label}}</div>\n        </div>\n        {{/each}}\n      </div>\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "58e174b8-db04-45b7-a3f8-6208398418ff",
+    "name": "App Showcase SaaS V5",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "app": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "tagline": { "type": "string" },
+            "cta": { "type": "string" }
+          },
+          "required": ["name", "tagline", "cta"],
+          "additionalProperties": false
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "desc": { "type": "string" }
+            },
+            "required": ["title", "desc"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["app", "features"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{app.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-black text-white overflow-x-hidden\">\n  <div class=\"relative bg-gradient-to-b from-purple-900/40 to-black pt-20 pb-32\">\n    <div class=\"max-w-7xl mx-auto px-6 lg:px-8 text-center\">\n      <div class=\"inline-flex items-center space-x-2 bg-white/10 rounded-full px-4 py-1.5 mb-8 border border-white/20\">\n        <span class=\"text-xs font-semibold uppercase tracking-wider text-purple-300\">New Release 2.0</span>\n      </div>\n      <h1 class=\"text-5xl md:text-7xl font-bold tracking-tight mb-6\">\n        {{app.name}}\n      </h1>\n      <p class=\"text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto\">\n        {{app.tagline}}\n      </p>\n      <button class=\"bg-purple-600 hover:bg-purple-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-colors shadow-[0_0_30px_rgba(147,51,234,0.3)]\">\n        {{app.cta}}\n      </button>\n      \n      <div class=\"mt-20 flex justify-center\">\n        <div class=\"relative w-64 h-[500px] bg-gray-900 border-[8px] border-gray-800 rounded-[2.5rem] shadow-2xl overflow-hidden flex items-center justify-center\">\n          <!-- Phone Mockup Frame -->\n          <div class=\"absolute top-0 w-32 h-6 bg-gray-800 rounded-b-3xl\"></div>\n          <span class=\"text-gray-600 text-sm font-medium\">App Interface</span>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"bg-black py-24 border-t border-white/10\">\n    <div class=\"max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12\">\n      {{#each features}}\n      <div class=\"text-left\">\n        <div class=\"w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center mb-6\">\n           <div class=\"w-4 h-4 rounded-full bg-purple-500\"></div>\n        </div>\n        <h3 class=\"text-xl font-bold mb-3 text-gray-100\">{{this.title}}</h3>\n        <p class=\"text-gray-400 leading-relaxed\">{{this.desc}}</p>\n      </div>\n      {{/each}}\n    </div>\n  </div>\n</body>\n</html>\n"
+  }
+]

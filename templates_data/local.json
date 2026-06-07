@@ -1,0 +1,187 @@
+[
+  {
+    "id": "d9b2d63d-a233-4123-8478-3de37130eb44",
+    "name": "Local Service V1 (General)",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "business_name": { "type": "string" },
+        "hero": {
+          "type": "object",
+          "properties": {
+            "headline": { "type": "string" },
+            "description": { "type": "string" },
+            "phone_number": { "type": "string" }
+          },
+          "required": ["headline", "description", "phone_number"],
+          "additionalProperties": false
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "summary": { "type": "string" }
+            },
+            "required": ["name", "summary"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["business_name", "hero", "services"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{business_name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-amber-50 text-slate-800 font-sans\">\n  <nav class=\"bg-white shadow-sm p-6 sticky top-0 z-50\">\n    <div class=\"max-w-6xl mx-auto flex justify-between items-center\">\n      <span class=\"text-2xl font-extrabold text-emerald-700 tracking-tight\">{{business_name}}</span>\n      <a href=\"tel:{{hero.phone_number}}\" class=\"font-bold text-emerald-600 hover:text-emerald-800 transition-colors\">Call: {{hero.phone_number}}</a>\n    </div>\n  </nav>\n  \n  <header class=\"bg-emerald-700 text-white py-24 px-6 text-center\">\n    <div class=\"max-w-4xl mx-auto\">\n      <h1 class=\"text-5xl md:text-6xl font-extrabold mb-6\">{{hero.headline}}</h1>\n      <p class=\"text-xl md:text-2xl text-emerald-100 mb-10 max-w-2xl mx-auto\">{{hero.description}}</p>\n      <button class=\"bg-amber-400 hover:bg-amber-500 text-amber-950 font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1\">\n        Request a Free Quote\n      </button>\n    </div>\n  </header>\n\n  <section class=\"py-20 px-6 max-w-6xl mx-auto\">\n    <div class=\"text-center mb-16\">\n      <h2 class=\"text-4xl font-bold text-slate-900\">Our Services</h2>\n      <div class=\"w-24 h-1 bg-amber-400 mx-auto mt-6\"></div>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-10\">\n      {{#each services}}\n      <div class=\"bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-shadow border-t-4 border-emerald-500 flex flex-col h-full\">\n        <h3 class=\"text-2xl font-bold text-emerald-800 mb-4\">{{this.name}}</h3>\n        <p class=\"text-slate-600 text-lg flex-grow\">{{this.summary}}</p>\n      </div>\n      {{/each}}\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "c1f738b5-e62e-4b47-9257-8bcf9de8b71d",
+    "name": "Law/Financial Firm V2",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "firm": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "tagline": { "type": "string" },
+            "phone": { "type": "string" },
+            "email": { "type": "string" }
+          },
+          "required": ["name", "tagline", "phone", "email"],
+          "additionalProperties": false
+        },
+        "practices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "desc": { "type": "string" }
+            },
+            "required": ["title", "desc"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": ["firm", "practices"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{firm.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@400;700&display=swap\" rel=\"stylesheet\">\n  <style>\n    body { font-family: 'Lato', sans-serif; }\n    h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }\n  </style>\n</head>\n<body class=\"bg-slate-50 text-slate-800\">\n  <div class=\"bg-slate-900 text-slate-300 py-2 px-6 text-sm flex justify-end gap-6\">\n     <span>Phone: {{firm.phone}}</span>\n     <span>Email: {{firm.email}}</span>\n  </div>\n  <nav class=\"bg-white shadow-sm px-6 py-8\">\n    <div class=\"max-w-6xl mx-auto flex justify-between items-center\">\n      <div class=\"text-3xl font-bold text-slate-900 serif tracking-wide uppercase\">{{firm.name}}</div>\n      <button class=\"bg-yellow-600 text-white px-6 py-3 rounded-sm font-bold uppercase tracking-wider hover:bg-yellow-700 transition\">Consultation</button>\n    </div>\n  </nav>\n  \n  <header class=\"relative bg-slate-900 py-32 px-6 overflow-hidden\">\n    <div class=\"absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center\"></div>\n    <div class=\"relative z-10 max-w-4xl mx-auto text-center\">\n      <h1 class=\"text-5xl md:text-7xl font-bold text-white mb-6 leading-tight\">Experienced. Dedicated. Trusted.</h1>\n      <p class=\"text-xl md:text-2xl text-yellow-500 mb-10 italic serif\">{{firm.tagline}}</p>\n    </div>\n  </header>\n\n  <section class=\"py-24 px-6 max-w-6xl mx-auto\">\n    <div class=\"text-center mb-16\">\n      <h2 class=\"text-4xl text-slate-900 mb-4\">Our Practice Areas</h2>\n      <div class=\"w-16 h-1 bg-yellow-600 mx-auto\"></div>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n      {{#each practices}}\n      <div class=\"border border-slate-200 p-10 bg-white hover:border-yellow-600 transition-colors group\">\n        <h3 class=\"text-2xl text-slate-900 mb-4 group-hover:text-yellow-600 transition-colors\">{{this.title}}</h3>\n        <p class=\"text-slate-600 leading-relaxed\">{{this.desc}}</p>\n      </div>\n      {{/each}}\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "7b0849db-d278-43da-a2de-8bbdbd262d1c",
+    "name": "Emergency Service / Plumber V3",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "headline": { "type": "string" },
+            "emergency_phone": { "type": "string" }
+          },
+          "required": ["name", "headline", "emergency_phone"],
+          "additionalProperties": false
+        },
+        "benefits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" }
+            },
+            "required": ["title"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["service", "benefits"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{service.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <style> .stripe-bg { background: repeating-linear-gradient( 45deg, #1e3a8a, #1e3a8a 20px, #172554 20px, #172554 40px ); } </style>\n</head>\n<body class=\"bg-gray-100 font-sans\">\n  <header class=\"bg-white px-4 py-4 flex flex-col md:flex-row justify-between items-center shadow-md relative z-10\">\n    <div class=\"text-3xl font-black text-blue-800 uppercase tracking-tighter mb-4 md:mb-0\">{{service.name}}</div>\n    <div class=\"flex items-center gap-4\">\n      <div class=\"text-right hidden sm:block\">\n        <div class=\"text-red-600 font-bold uppercase text-sm\">24/7 Emergency Response</div>\n        <div class=\"text-2xl font-black text-gray-900\">{{service.emergency_phone}}</div>\n      </div>\n      <a href=\"tel:{{service.emergency_phone}}\" class=\"bg-red-600 hover:bg-red-700 text-white font-black text-xl px-6 py-4 rounded shadow-[0_4px_0_#991b1b] active:shadow-[0_0px_0_#991b1b] active:translate-y-1 transition-all uppercase\">\n        Call Now\n      </a>\n    </div>\n  </header>\n\n  <main class=\"stripe-bg text-white py-20 px-4 text-center border-b-8 border-red-600\">\n    <div class=\"max-w-4xl mx-auto\">\n       <div class=\"inline-block bg-yellow-400 text-black font-black uppercase px-4 py-1 mb-6 transform -skew-x-12\">\n         Top Rated Local Experts\n       </div>\n       <h1 class=\"text-5xl md:text-7xl font-black uppercase leading-none mb-8\">\n         {{service.headline}}\n       </h1>\n       <div class=\"grid grid-cols-2 md:grid-cols-4 gap-4 mt-12\">\n         {{#each benefits}}\n         <div class=\"bg-white text-blue-900 font-bold p-4 rounded uppercase shadow-lg text-sm md:text-base flex items-center justify-center\">\n           ✓ {{this.title}}\n         </div>\n         {{/each}}\n       </div>\n    </div>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "e98e4d3a-b8e3-4f01-90ef-8b7a9de12104",
+    "name": "Spa / Salon V4",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "spa": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "welcome_text": { "type": "string" }
+          },
+          "required": ["name", "welcome_text"],
+          "additionalProperties": false
+        },
+        "treatments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "price": { "type": "string" }
+            },
+            "required": ["name", "price"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["spa", "treatments"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{spa.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Montserrat', sans-serif; } h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; } </style>\n</head>\n<body class=\"bg-[#faf9f7] text-[#4a4a4a]\">\n  <nav class=\"px-12 py-8 flex justify-center\">\n    <h1 class=\"text-4xl tracking-[0.2em] uppercase text-[#8c7a6b] serif\">{{spa.name}}</h1>\n  </nav>\n\n  <header class=\"relative h-[60vh] bg-[#e8e4e1] flex items-center justify-center overflow-hidden\">\n    <div class=\"absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center mix-blend-multiply\"></div>\n    <div class=\"relative z-10 text-center px-4 max-w-2xl\">\n      <p class=\"text-3xl md:text-5xl serif italic text-[#5c4f45] leading-relaxed\">\"{{spa.welcome_text}}\"</p>\n      <button class=\"mt-10 px-10 py-3 border border-[#8c7a6b] text-[#8c7a6b] uppercase tracking-widest text-sm hover:bg-[#8c7a6b] hover:text-white transition-colors duration-500\">\n        Book Appointment\n      </button>\n    </div>\n  </header>\n\n  <section class=\"py-24 max-w-4xl mx-auto px-6\">\n    <div class=\"text-center mb-16\">\n      <h2 class=\"text-3xl serif uppercase tracking-widest text-[#8c7a6b] mb-4\">Our Treatments</h2>\n      <div class=\"w-px h-12 bg-[#d1c8c1] mx-auto\"></div>\n    </div>\n    <div class=\"space-y-6\">\n      {{#each treatments}}\n      <div class=\"flex justify-between items-center border-b border-[#e8e4e1] pb-6\">\n        <h3 class=\"text-xl serif text-[#5c4f45]\">{{this.name}}</h3>\n        <span class=\"text-[#8c7a6b] tracking-wider\">{{this.price}}</span>\n      </div>\n      {{/each}}\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "a9a3b6d2-43f1-4e78-831e-b8d4c9e8d123",
+    "name": "Restaurant / Cafe V5",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "restaurant": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "subtitle": { "type": "string" }
+          },
+          "required": ["name", "subtitle"],
+          "additionalProperties": false
+        },
+        "menu_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "dish": { "type": "string" },
+              "desc": { "type": "string" },
+              "price": { "type": "string" }
+            },
+            "required": ["dish", "desc", "price"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["restaurant", "menu_items"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{restaurant.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Source Sans Pro', sans-serif; } h1, h2, h3, .heading-font { font-family: 'Oswald', sans-serif; } </style>\n</head>\n<body class=\"bg-stone-900 text-stone-300\">\n  <nav class=\"fixed w-full z-50 bg-stone-900/90 backdrop-blur border-b border-stone-800\">\n    <div class=\"max-w-6xl mx-auto px-6 py-4 flex justify-between items-center\">\n      <div class=\"text-2xl font-bold tracking-widest uppercase text-orange-500 heading-font\">{{restaurant.name}}</div>\n      <button class=\"bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 uppercase tracking-wider text-sm font-bold transition\">\n        Reserve Table\n      </button>\n    </div>\n  </nav>\n\n  <header class=\"relative h-[70vh] flex flex-col items-center justify-center text-center\">\n     <div class=\"absolute inset-0 bg-[url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1934&auto=format&fit=crop')] bg-cover bg-center opacity-40\"></div>\n     <div class=\"absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent\"></div>\n     <div class=\"relative z-10 px-4\">\n       <h1 class=\"text-6xl md:text-8xl font-bold text-white mb-4 uppercase tracking-wider heading-font\">{{restaurant.name}}</h1>\n       <p class=\"text-xl md:text-2xl text-orange-400 heading-font tracking-widest uppercase\">{{restaurant.subtitle}}</p>\n     </div>\n  </header>\n\n  <section class=\"py-20 px-6 max-w-4xl mx-auto\">\n    <h2 class=\"text-4xl text-center text-white mb-16 uppercase tracking-widest heading-font\">Featured Menu</h2>\n    <div class=\"grid md:grid-cols-2 gap-x-12 gap-y-10\">\n      {{#each menu_items}}\n      <div class=\"border-b border-stone-800 pb-6\">\n        <div class=\"flex justify-between items-baseline mb-2\">\n          <h3 class=\"text-xl font-bold text-white uppercase tracking-wide heading-font\">{{this.dish}}</h3>\n          <span class=\"text-orange-500 font-bold\">{{this.price}}</span>\n        </div>\n        <p class=\"text-stone-400 text-sm leading-relaxed\">{{this.desc}}</p>\n      </div>\n      {{/each}}\n    </div>\n  </section>\n</body>\n</html>\n"
+  }
+]

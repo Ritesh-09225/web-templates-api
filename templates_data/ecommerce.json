@@ -1,0 +1,186 @@
+[
+  {
+    "id": "3522b790-65f2-4494-9193-de2ee91f92d5",
+    "name": "E-commerce Product V1 (Simple)",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "price": { "type": "string" },
+            "description": { "type": "string" },
+            "category": { "type": "string" }
+          },
+          "required": ["name", "price", "description", "category"],
+          "additionalProperties": false
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "detail": { "type": "string" }
+            },
+            "required": ["title", "detail"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["product", "features"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{product.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-gray-50 text-gray-900\">\n  <nav class=\"bg-white p-4 shadow-sm\">\n    <div class=\"max-w-7xl mx-auto font-bold text-xl tracking-tight\">MyShop</div>\n  </nav>\n\n  <main class=\"max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8\">\n    <div class=\"lg:grid lg:grid-cols-2 lg:gap-x-8\">\n      <div class=\"bg-gray-200 rounded-lg aspect-square flex items-center justify-center\">\n        <span class=\"text-gray-400 font-medium\">[Product Image Placeholder]</span>\n      </div>\n\n      <div class=\"mt-10 px-4 sm:px-0 lg:mt-0\">\n        <h2 class=\"text-sm text-indigo-600 font-semibold tracking-wide uppercase\">{{product.category}}</h2>\n        <h1 class=\"mt-2 text-4xl font-extrabold tracking-tight text-gray-900\">{{product.name}}</h1>\n        <p class=\"mt-4 text-3xl text-gray-900\">{{product.price}}</p>\n\n        <div class=\"mt-6\">\n          <p class=\"text-base text-gray-700 leading-relaxed\">{{product.description}}</p>\n        </div>\n\n        <form class=\"mt-10\">\n          <button type=\"button\" class=\"w-full bg-indigo-600 rounded-md py-4 px-8 text-base font-medium text-white hover:bg-indigo-700 shadow-sm\">\n            Add to cart\n          </button>\n        </form>\n\n        <div class=\"mt-10 border-t border-gray-200 pt-10\">\n          <h3 class=\"text-lg font-medium text-gray-900 mb-6\">Key Features</h3>\n          <div class=\"grid grid-cols-1 gap-6 sm:grid-cols-2\">\n            {{#each features}}\n            <div>\n              <dt class=\"font-medium text-gray-900\">{{this.title}}</dt>\n              <dd class=\"mt-2 text-sm text-gray-500\">{{this.detail}}</dd>\n            </div>\n            {{/each}}\n          </div>\n        </div>\n      </div>\n    </div>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "f5e92c10-09fa-45b6-94bb-103ef4e5f7b8",
+    "name": "Fashion / Apparel V2",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "price": { "type": "string" },
+            "material": { "type": "string" }
+          },
+          "required": ["name", "price", "material"],
+          "additionalProperties": false
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "color": { "type": "string" }
+            },
+            "required": ["color"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 4
+        }
+      },
+      "required": ["item", "variants"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{item.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Jost', sans-serif; } </style>\n</head>\n<body class=\"bg-white text-gray-900\">\n  <nav class=\"border-b border-gray-100 py-6 text-center uppercase tracking-[0.2em] font-medium text-sm\">\n    Boutique\n  </nav>\n\n  <main class=\"max-w-7xl mx-auto md:h-[calc(100vh-80px)] md:overflow-hidden flex flex-col md:flex-row\">\n    <div class=\"md:w-1/2 md:overflow-y-auto bg-gray-50\">\n      <div class=\"h-[60vh] md:h-[100vh] bg-[url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1500&auto=format&fit=crop')] bg-cover bg-center\"></div>\n      <div class=\"h-[60vh] md:h-[100vh] bg-[url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1500&auto=format&fit=crop')] bg-cover bg-center\"></div>\n    </div>\n\n    <div class=\"md:w-1/2 p-8 md:p-16 lg:p-24 flex flex-col justify-center bg-white z-10\">\n      <h1 class=\"text-4xl md:text-5xl font-light tracking-tight mb-2\">{{item.name}}</h1>\n      <p class=\"text-2xl font-medium text-gray-900 mb-8\">{{item.price}}</p>\n\n      <div class=\"mb-8\">\n        <h3 class=\"text-sm uppercase tracking-widest text-gray-500 mb-3\">Color</h3>\n        <div class=\"flex gap-3\">\n          {{#each variants}}\n          <button class=\"px-4 py-2 border border-gray-200 hover:border-black text-sm uppercase tracking-wider transition\">\n            {{this.color}}\n          </button>\n          {{/each}}\n        </div>\n      </div>\n\n      <div class=\"mb-10\">\n        <h3 class=\"text-sm uppercase tracking-widest text-gray-500 mb-3\">Size</h3>\n        <div class=\"flex gap-3\">\n          <button class=\"w-12 h-12 flex items-center justify-center border border-gray-200 hover:border-black\">S</button>\n          <button class=\"w-12 h-12 flex items-center justify-center border border-black bg-black text-white\">M</button>\n          <button class=\"w-12 h-12 flex items-center justify-center border border-gray-200 hover:border-black\">L</button>\n        </div>\n      </div>\n\n      <button class=\"w-full bg-black text-white uppercase tracking-[0.2em] py-5 font-medium hover:bg-gray-800 transition mb-6\">\n        Add to Bag\n      </button>\n\n      <div class=\"text-sm text-gray-500 space-y-2\">\n        <p>Material: {{item.material}}</p>\n        <p>Free standard shipping on orders over $150.</p>\n      </div>\n    </div>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "1d8b9f03-6e2c-4573-982d-8e4a9e22dbab",
+    "name": "Tech Gadget V3",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "gadget": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "price": { "type": "string" },
+            "highlight": { "type": "string" }
+          },
+          "required": ["name", "price", "highlight"],
+          "additionalProperties": false
+        },
+        "specs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "spec_name": { "type": "string" },
+              "value": { "type": "string" }
+            },
+            "required": ["spec_name", "value"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["gadget", "specs"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{gadget.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Space Grotesk', sans-serif; } </style>\n</head>\n<body class=\"bg-[#0a0a0a] text-white\">\n  <div class=\"fixed w-full bg-[#0a0a0a]/80 backdrop-blur-md z-50 border-b border-white/10\">\n    <div class=\"max-w-7xl mx-auto px-6 py-4 flex justify-between items-center\">\n      <div class=\"font-bold text-xl tracking-tighter\">NEXUS_TECH</div>\n      <div class=\"flex items-center gap-6\">\n        <span class=\"font-medium\">{{gadget.price}}</span>\n        <button class=\"bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-gray-200 transition\">\n          Buy Now\n        </button>\n      </div>\n    </div>\n  </div>\n\n  <main class=\"pt-24\">\n    <div class=\"max-w-7xl mx-auto px-6 py-20 flex flex-col lg:flex-row items-center gap-16\">\n      <div class=\"lg:w-1/2\">\n        <div class=\"text-sm font-bold tracking-[0.3em] text-blue-500 uppercase mb-4\">New Release</div>\n        <h1 class=\"text-6xl md:text-8xl font-bold tracking-tighter mb-6 leading-none\">\n          {{gadget.name}}\n        </h1>\n        <p class=\"text-2xl text-gray-400 font-light mb-10\">\n          {{gadget.highlight}}\n        </p>\n        <button class=\"bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-full font-bold text-lg transition shadow-[0_0_20px_rgba(37,99,235,0.4)]\">\n          Pre-order Now\n        </button>\n      </div>\n      <div class=\"lg:w-1/2 relative\">\n        <div class=\"absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full\"></div>\n        <div class=\"relative aspect-square bg-[#111] rounded-[3rem] border border-white/5 flex items-center justify-center shadow-2xl\">\n           <span class=\"text-gray-600 font-medium tracking-widest uppercase\">Rendering Model...</span>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"bg-[#111] py-24 border-t border-white/5\">\n      <div class=\"max-w-4xl mx-auto px-6\">\n        <h2 class=\"text-3xl font-bold tracking-tight mb-12 text-center\">Technical Specifications</h2>\n        <div class=\"grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6\">\n          {{#each specs}}\n          <div class=\"flex justify-between items-end border-b border-white/10 pb-4\">\n            <span class=\"text-gray-500 uppercase tracking-widest text-sm font-semibold\">{{this.spec_name}}</span>\n            <span class=\"font-medium text-lg text-white text-right\">{{this.value}}</span>\n          </div>\n          {{/each}}\n        </div>\n      </div>\n    </div>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "e0c714b1-a8b2-4d2b-9c71-c0a76a8d7123",
+    "name": "Beauty / Skincare V4",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "price": { "type": "string" },
+            "benefits_summary": { "type": "string" }
+          },
+          "required": ["name", "price", "benefits_summary"],
+          "additionalProperties": false
+        },
+        "ingredients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "purpose": { "type": "string" }
+            },
+            "required": ["name", "purpose"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": ["product", "ingredients"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{product.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-[#fcfaf9] text-[#5a504b] font-serif\">\n  <nav class=\"py-8 text-center\">\n    <div class=\"text-2xl tracking-[0.2em] uppercase\">Lumière</div>\n  </nav>\n\n  <main class=\"max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row gap-16\">\n    <div class=\"md:w-1/2\">\n      <div class=\"aspect-[3/4] bg-[#f0eae6] rounded-t-full flex items-center justify-center p-8\">\n         <div class=\"w-48 h-64 bg-white/50 rounded-lg shadow-inner flex items-center justify-center\">\n            <span class=\"text-[#a89b94] font-sans text-xs tracking-widest uppercase\">Product Bottle</span>\n         </div>\n      </div>\n    </div>\n    \n    <div class=\"md:w-1/2 flex flex-col justify-center\">\n      <div class=\"flex items-center gap-2 mb-4\">\n        <span class=\"text-yellow-500\">★★★★★</span>\n        <span class=\"font-sans text-xs uppercase tracking-widest text-[#a89b94]\">128 Reviews</span>\n      </div>\n      <h1 class=\"text-4xl md:text-5xl mb-4\">{{product.name}}</h1>\n      <p class=\"text-2xl text-[#8b7d76] mb-8 font-sans font-light\">{{product.price}}</p>\n      <p class=\"text-lg leading-relaxed mb-10 text-[#7a6e67]\">{{product.benefits_summary}}</p>\n      \n      <button class=\"bg-[#5a504b] text-white py-4 px-8 uppercase font-sans tracking-[0.1em] text-sm hover:bg-[#3d3632] transition duration-300 w-full mb-4\">\n        Add to Cart\n      </button>\n      \n      <div class=\"flex justify-center gap-8 py-6 border-b border-[#ece6e2] font-sans text-xs uppercase tracking-widest text-[#a89b94]\">\n        <span>Cruelty Free</span>\n        <span>Vegan</span>\n        <span>Dermatologist Tested</span>\n      </div>\n\n      <div class=\"mt-10\">\n        <h3 class=\"text-xl mb-6\">Key Ingredients</h3>\n        <div class=\"space-y-4 font-sans\">\n          {{#each ingredients}}\n          <div class=\"flex flex-col\">\n            <span class=\"font-medium text-[#5a504b] uppercase tracking-wider text-sm mb-1\">{{this.name}}</span>\n            <span class=\"text-[#8b7d76] text-sm\">{{this.purpose}}</span>\n          </div>\n          {{/each}}\n        </div>\n      </div>\n    </div>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "ca1c865f-4d9f-43b9-a685-648b7a610f44",
+    "name": "Subscription / Food V5",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "box": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "subtitle": { "type": "string" },
+            "price_per_meal": { "type": "string" }
+          },
+          "required": ["title", "subtitle", "price_per_meal"],
+          "additionalProperties": false
+        },
+        "benefits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "point": { "type": "string" }
+            },
+            "required": ["point"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["box", "benefits"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{box.title}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Poppins', sans-serif; } </style>\n</head>\n<body class=\"bg-[#fef9f3] text-gray-800\">\n  <nav class=\"bg-white py-4 px-6 shadow-sm sticky top-0 z-50 flex justify-between items-center\">\n    <div class=\"text-2xl font-extrabold text-green-600\">FreshMeals</div>\n    <button class=\"text-sm font-bold uppercase tracking-wider text-gray-600 hover:text-green-600\">Login</button>\n  </nav>\n\n  <div class=\"max-w-7xl mx-auto px-6 py-12 lg:py-24 grid lg:grid-cols-2 gap-12 items-center\">\n    <div class=\"order-2 lg:order-1\">\n      <div class=\"inline-block bg-green-100 text-green-800 font-bold px-4 py-2 rounded-full text-sm mb-6 uppercase tracking-wide\">\n        Healthy Delivered\n      </div>\n      <h1 class=\"text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-gray-900\">\n        {{box.title}}\n      </h1>\n      <p class=\"text-xl text-gray-600 mb-8 leading-relaxed\">\n        {{box.subtitle}}\n      </p>\n      \n      <div class=\"bg-white p-6 rounded-2xl shadow-lg border border-gray-100 mb-8\">\n        <div class=\"flex justify-between items-center mb-4\">\n          <span class=\"font-bold text-lg\">Weekly Plan</span>\n          <div class=\"text-right\">\n            <span class=\"text-3xl font-extrabold text-green-600\">{{box.price_per_meal}}</span>\n            <span class=\"text-sm text-gray-500 uppercase font-bold block\">/ meal</span>\n          </div>\n        </div>\n        <button class=\"w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl text-lg transition-transform transform hover:-translate-y-1 shadow-lg hover:shadow-green-500/30\">\n          Choose Your Meals\n        </button>\n        <p class=\"text-center text-xs text-gray-400 mt-4 font-medium uppercase tracking-wide\">Cancel or pause anytime.</p>\n      </div>\n\n      <ul class=\"space-y-4\">\n        {{#each benefits}}\n        <li class=\"flex items-center text-gray-700 font-medium\">\n          <svg class=\"w-6 h-6 text-green-500 mr-3 shrink-0\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" d=\"M5 13l4 4L19 7\"></path>\n          </svg>\n          {{this.point}}\n        </li>\n        {{/each}}\n      </ul>\n    </div>\n    \n    <div class=\"order-1 lg:order-2 relative\">\n      <div class=\"absolute inset-0 bg-yellow-400 rounded-full blur-[100px] opacity-40\"></div>\n      <img src=\"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop\" alt=\"Healthy Meal\" class=\"relative z-10 w-full h-auto rounded-[3rem] shadow-2xl object-cover aspect-square\" />\n    </div>\n  </div>\n</body>\n</html>\n"
+  }
+]

@@ -1,0 +1,191 @@
+[
+  {
+    "id": "688c0859-81f0-48d0-b6c9-bd410d262104",
+    "name": "Classic Blog Layout V1",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "blog": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "subtitle": { "type": "string" }
+          },
+          "required": ["title", "subtitle"],
+          "additionalProperties": false
+        },
+        "featured_post": {
+          "type": "object",
+          "properties": {
+            "headline": { "type": "string" },
+            "excerpt": { "type": "string" },
+            "author": { "type": "string" },
+            "date": { "type": "string" }
+          },
+          "required": ["headline", "excerpt", "author", "date"],
+          "additionalProperties": false
+        },
+        "articles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "category": { "type": "string" }
+            },
+            "required": ["title", "category"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": ["blog", "featured_post", "articles"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{blog.title}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-white font-serif text-gray-900\">\n  <header class=\"py-10 border-b border-gray-200 text-center px-4\">\n    <h1 class=\"text-4xl md:text-6xl font-bold tracking-tight text-gray-900\">{{blog.title}}</h1>\n    <p class=\"mt-4 text-xl text-gray-500\">{{blog.subtitle}}</p>\n  </header>\n\n  <main class=\"max-w-6xl mx-auto py-12 px-6\">\n    <section class=\"mb-16\">\n      <h2 class=\"text-sm font-bold tracking-widest text-gray-400 uppercase mb-6\">Featured Story</h2>\n      <article class=\"grid grid-cols-1 md:grid-cols-2 gap-10 items-center\">\n        <div class=\"bg-gray-100 aspect-video md:aspect-square w-full rounded-xl flex items-center justify-center text-gray-400\">\n          [Image]\n        </div>\n        <div>\n          <h3 class=\"text-3xl md:text-5xl font-bold leading-tight mb-6\">{{featured_post.headline}}</h3>\n          <p class=\"text-lg text-gray-600 mb-6 leading-relaxed\">{{featured_post.excerpt}}</p>\n          <div class=\"flex items-center text-sm text-gray-500 font-sans\">\n            <span class=\"font-bold text-gray-900 mr-2\">{{featured_post.author}}</span>\n            <span>&middot;</span>\n            <span class=\"ml-2\">{{featured_post.date}}</span>\n          </div>\n        </div>\n      </article>\n    </section>\n\n    <section class=\"border-t border-gray-200 pt-16\">\n      <h2 class=\"text-sm font-bold tracking-widest text-gray-400 uppercase mb-8\">Recent Articles</h2>\n      <div class=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n        {{#each articles}}\n        <article class=\"group\">\n          <div class=\"text-xs font-bold text-red-600 uppercase tracking-wide mb-3 font-sans\">{{this.category}}</div>\n          <h4 class=\"text-xl font-bold leading-snug group-hover:underline decoration-2 decoration-gray-300 underline-offset-4\">{{this.title}}</h4>\n        </article>\n        {{/each}}\n      </div>\n    </section>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "fe130dfc-b9b9-478f-a9db-953e5e01bd9b",
+    "name": "Tech / Dev Blog V2",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "blog": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "version": { "type": "string" }
+          },
+          "required": ["name", "version"],
+          "additionalProperties": false
+        },
+        "posts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "summary": { "type": "string" },
+              "tags": { "type": "string" }
+            },
+            "required": ["title", "summary", "tags"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 4
+        }
+      },
+      "required": ["blog", "posts"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{blog.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;800&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Inter', sans-serif; } .mono { font-family: 'Fira Code', monospace; } </style>\n</head>\n<body class=\"bg-[#0d1117] text-[#c9d1d9]\">\n  <div class=\"flex flex-col md:flex-row min-h-screen\">\n    <aside class=\"w-full md:w-64 bg-[#161b22] border-r border-[#30363d] p-6 flex flex-col\">\n      <div class=\"text-xl font-bold text-white mb-2\">{{blog.name}}</div>\n      <div class=\"text-xs text-[#8b949e] mono mb-8\">v{{blog.version}}</div>\n      <nav class=\"flex-1 space-y-2 text-sm font-medium\">\n        <a href=\"#\" class=\"block px-3 py-2 bg-[#21262d] text-white rounded-md\">Latest</a>\n        <a href=\"#\" class=\"block px-3 py-2 text-[#8b949e] hover:text-white\">Tutorials</a>\n        <a href=\"#\" class=\"block px-3 py-2 text-[#8b949e] hover:text-white\">Snippets</a>\n        <a href=\"#\" class=\"block px-3 py-2 text-[#8b949e] hover:text-white\">Projects</a>\n      </nav>\n      <div class=\"mt-auto pt-8 border-t border-[#30363d] text-xs text-[#8b949e]\">\n        &copy; 2026 DevBlog\n      </div>\n    </aside>\n\n    <main class=\"flex-1 p-6 md:p-12 lg:px-24\">\n      <h1 class=\"text-3xl font-bold text-white mb-10\">Recent Activity</h1>\n      <div class=\"space-y-8\">\n        {{#each posts}}\n        <article class=\"bg-[#161b22] border border-[#30363d] rounded-lg p-6 hover:border-[#8b949e] transition-colors\">\n          <h2 class=\"text-2xl font-bold text-[#58a6ff] mb-3\">\n            <a href=\"#\" class=\"hover:underline\">{{this.title}}</a>\n          </h2>\n          <p class=\"text-[#8b949e] mb-4 leading-relaxed\">{{this.summary}}</p>\n          <div class=\"flex gap-2 text-xs mono text-[#7ee787]\">\n            <span>[{{this.tags}}]</span>\n          </div>\n        </article>\n        {{/each}}\n      </div>\n    </main>\n  </div>\n</body>\n</html>\n"
+  },
+  {
+    "id": "e93ab630-f5a6-4b11-9a70-8b1b51fc3a5a",
+    "name": "Magazine Layout V3",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "magazine": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "issue": { "type": "string" }
+          },
+          "required": ["name", "issue"],
+          "additionalProperties": false
+        },
+        "featured": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "category": { "type": "string" }
+          },
+          "required": ["title", "category"],
+          "additionalProperties": false
+        },
+        "articles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "category": { "type": "string" }
+            },
+            "required": ["title", "category"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["magazine", "featured", "articles"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{magazine.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;600&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Open Sans', sans-serif; } .anton { font-family: 'Anton', sans-serif; } </style>\n</head>\n<body class=\"bg-[#f4f4f4] text-black\">\n  <header class=\"border-b-4 border-black py-6 px-4 text-center bg-white\">\n    <div class=\"text-xs font-bold uppercase tracking-widest text-gray-500 mb-2\">Issue No. {{magazine.issue}}</div>\n    <h1 class=\"text-6xl md:text-8xl anton uppercase tracking-wide\">{{magazine.name}}</h1>\n  </header>\n\n  <main class=\"max-w-7xl mx-auto p-4 md:p-8\">\n    <div class=\"grid grid-cols-1 lg:grid-cols-3 gap-8\">\n      <div class=\"lg:col-span-2 relative group cursor-pointer\">\n        <div class=\"w-full aspect-video md:aspect-[16/9] bg-[url('https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1500&auto=format&fit=crop')] bg-cover bg-center\">\n          <div class=\"absolute inset-0 bg-gradient-to-t from-black/80 to-transparent\"></div>\n          <div class=\"absolute bottom-0 left-0 p-6 md:p-10\">\n            <span class=\"bg-red-600 text-white text-xs font-bold uppercase px-3 py-1 mb-4 inline-block\">{{featured.category}}</span>\n            <h2 class=\"text-4xl md:text-5xl text-white anton leading-tight group-hover:underline\">{{featured.title}}</h2>\n          </div>\n        </div>\n      </div>\n      \n      <div class=\"lg:col-span-1 flex flex-col gap-6\">\n        {{#each articles}}\n        <article class=\"flex gap-4 group cursor-pointer\">\n           <div class=\"w-1/3 aspect-square bg-gray-300 bg-[url('https://images.unsplash.com/photo-1481437156560-3205f6a55735?q=80&w=500&auto=format&fit=crop')] bg-cover bg-center\"></div>\n           <div class=\"w-2/3\">\n             <span class=\"text-xs font-bold text-red-600 uppercase mb-1 block\">{{this.category}}</span>\n             <h3 class=\"text-xl anton leading-snug group-hover:text-red-600 transition-colors\">{{this.title}}</h3>\n           </div>\n        </article>\n        {{/each}}\n      </div>\n    </div>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "e7c2e391-7603-4f9e-a890-dfcb15462fc3",
+    "name": "Minimalist Reader V4",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "post": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "content": { "type": "string" },
+            "date": { "type": "string" }
+          },
+          "required": ["title", "content", "date"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["post"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{post.title}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap\" rel=\"stylesheet\">\n  <style> body { font-family: 'Lora', serif; background-color: #fdfdfc; color: #333; } </style>\n</head>\n<body>\n  <article class=\"max-w-2xl mx-auto px-6 py-20 md:py-32\">\n    <header class=\"mb-16 text-center\">\n      <time class=\"text-gray-400 text-sm italic tracking-widest uppercase\">{{post.date}}</time>\n      <h1 class=\"text-4xl md:text-5xl font-medium mt-6 leading-tight text-gray-900\">{{post.title}}</h1>\n    </header>\n    \n    <div class=\"prose prose-lg text-gray-700 leading-loose\">\n      <p class=\"mb-8 text-xl text-gray-800 leading-relaxed\">\n        {{post.content}}\n      </p>\n    </div>\n    \n    <footer class=\"mt-24 pt-10 border-t border-gray-200 text-center\">\n      <p class=\"text-sm text-gray-500 italic mb-6\">Enjoyed this piece? Join the newsletter.</p>\n      <form class=\"flex justify-center max-w-sm mx-auto\">\n        <input type=\"email\" placeholder=\"Your email\" class=\"px-4 py-3 border border-gray-300 w-full focus:outline-none focus:border-gray-500 font-sans text-sm\">\n        <button class=\"bg-gray-900 text-white px-6 py-3 font-sans text-sm tracking-widest uppercase hover:bg-gray-800\">Subscribe</button>\n      </form>\n    </footer>\n  </article>\n</body>\n</html>\n"
+  },
+  {
+    "id": "e89d1b09-fa92-411a-b32c-3f2d22bcf281",
+    "name": "Creator Newsletter V5",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "newsletter": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "subject": { "type": "string" },
+            "intro": { "type": "string" }
+          },
+          "required": ["name", "subject", "intro"],
+          "additionalProperties": false
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "url": { "type": "string" }
+            },
+            "required": ["title", "url"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 5
+        }
+      },
+      "required": ["newsletter", "links"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{newsletter.subject}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <style> body { background-color: #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif; } </style>\n</head>\n<body class=\"py-10\">\n  <div class=\"max-w-xl mx-auto bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100\">\n    <div class=\"bg-indigo-600 p-8 text-center\">\n      <div class=\"w-16 h-16 bg-white/20 rounded-full mx-auto flex items-center justify-center mb-4\">\n         <svg class=\"w-8 h-8 text-white\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z\"></path></svg>\n      </div>\n      <h1 class=\"text-2xl font-bold text-white mb-1\">{{newsletter.name}}</h1>\n      <p class=\"text-indigo-200 text-sm font-medium\">Weekly Digest</p>\n    </div>\n    \n    <div class=\"p-8\">\n      <h2 class=\"text-3xl font-bold text-gray-900 mb-6\">{{newsletter.subject}}</h2>\n      <div class=\"text-lg text-gray-700 leading-relaxed mb-10 pb-10 border-b border-gray-100\">\n        <p>{{newsletter.intro}}</p>\n      </div>\n\n      <h3 class=\"text-sm font-bold text-gray-400 uppercase tracking-widest mb-6\">This Week's Best Links</h3>\n      <ul class=\"space-y-4\">\n        {{#each links}}\n        <li>\n          <a href=\"{{this.url}}\" class=\"flex items-start group\">\n            <div class=\"mt-1 mr-3 w-5 h-5 bg-indigo-100 text-indigo-600 rounded flex items-center justify-center shrink-0\">\n               <svg class=\"w-3 h-3\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path fill-rule=\"evenodd\" d=\"M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z\" clip-rule=\"evenodd\"></path></svg>\n            </div>\n            <span class=\"text-lg font-medium text-gray-900 group-hover:text-indigo-600 transition-colors\">{{this.title}}</span>\n          </a>\n        </li>\n        {{/each}}\n      </ul>\n    </div>\n\n    <div class=\"bg-gray-50 p-6 text-center border-t border-gray-100\">\n      <p class=\"text-sm text-gray-500 mb-4\">Didn't subscribe to this list?</p>\n      <button class=\"text-indigo-600 text-sm font-semibold hover:underline\">Unsubscribe</button>\n    </div>\n  </div>\n</body>\n</html>\n"
+  }
+]
