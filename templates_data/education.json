@@ -1,0 +1,182 @@
+[
+  {
+    "id": "c076b4a0-6789-444b-4321-9abcdef01234",
+    "name": "Online Course Landing",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "course": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "instructor": { "type": "string" },
+            "price": { "type": "string" }
+          },
+          "required": ["title", "instructor", "price"],
+          "additionalProperties": false
+        },
+        "curriculum": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "module": { "type": "string" },
+              "description": { "type": "string" }
+            },
+            "required": ["module", "description"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 5
+        }
+      },
+      "required": ["course", "curriculum"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{course.title}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-indigo-50 text-indigo-950 font-sans\">\n  <header class=\"bg-indigo-900 text-white py-24 px-6 text-center\">\n    <div class=\"max-w-3xl mx-auto\">\n      <span class=\"bg-indigo-800 text-indigo-200 text-sm font-bold uppercase tracking-widest py-1 px-3 rounded-full mb-6 inline-block\">New Course</span>\n      <h1 class=\"text-5xl md:text-7xl font-extrabold mb-6 leading-tight\">{{course.title}}</h1>\n      <p class=\"text-xl md:text-2xl text-indigo-200 mb-10\">Taught by {{course.instructor}}</p>\n      <button class=\"bg-yellow-400 text-indigo-900 font-bold py-4 px-10 rounded-full shadow-lg hover:bg-yellow-300 transition text-lg\">\n        Enroll Now for {{course.price}}\n      </button>\n    </div>\n  </header>\n  <section class=\"max-w-4xl mx-auto py-20 px-6\">\n    <h2 class=\"text-3xl font-bold mb-10 text-center\">Course Curriculum</h2>\n    <div class=\"space-y-6\">\n      {{#each curriculum}}\n      <div class=\"bg-white p-6 rounded-xl shadow-sm border border-indigo-100 flex items-start\">\n        <div class=\"bg-indigo-100 text-indigo-700 w-10 h-10 rounded-full flex items-center justify-center font-bold shrink-0 mr-4\">▶</div>\n        <div>\n          <h3 class=\"text-xl font-bold mb-2\">{{this.module}}</h3>\n          <p class=\"text-indigo-700/70\">{{this.description}}</p>\n        </div>\n      </div>\n      {{/each}}\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "d187c5b1-7890-455c-3210-abcdef012345",
+    "name": "University / College Portal",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "university": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "motto": { "type": "string" }
+          },
+          "required": ["name", "motto"],
+          "additionalProperties": false
+        },
+        "programs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" }
+            },
+            "required": ["name"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 6
+        }
+      },
+      "required": ["university", "programs"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{university.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <style>@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@400;600&display=swap'); .serif { font-family: 'Merriweather', serif; } body { font-family: 'Open Sans', sans-serif; }</style>\n</head>\n<body class=\"bg-white text-gray-800\">\n  <div class=\"bg-red-800 text-white py-2 text-sm text-center tracking-wide\">\n    Admissions for Fall 2026 are now open. <a href=\"#\" class=\"underline font-semibold\">Apply today</a>\n  </div>\n  <header class=\"py-8 px-6 border-b border-gray-200\">\n    <div class=\"max-w-7xl mx-auto flex flex-col items-center\">\n      <h1 class=\"text-4xl serif text-red-800 font-bold mb-2\">{{university.name}}</h1>\n      <p class=\"italic text-gray-500 serif\">{{university.motto}}</p>\n    </div>\n  </header>\n  <div class=\"relative bg-gray-900 h-96\">\n    <div class=\"absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-50\"></div>\n    <div class=\"absolute inset-0 flex items-center justify-center\">\n      <h2 class=\"text-white text-5xl serif font-bold text-center drop-shadow-md px-4\">\n        Shape Your Future\n      </h2>\n    </div>\n  </div>\n  <section class=\"max-w-6xl mx-auto py-16 px-6\">\n    <h3 class=\"text-3xl serif text-center text-red-800 mb-12\">Explore Our Programs</h3>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6\">\n      {{#each programs}}\n      <a href=\"#\" class=\"block p-8 border border-gray-200 text-center hover:border-red-800 hover:shadow-lg transition group\">\n        <h4 class=\"text-xl font-bold group-hover:text-red-800 transition\">{{this.name}}</h4>\n      </a>\n      {{/each}}\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "e298d6c2-8901-466d-2109-bcdef0123456",
+    "name": "Language School",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "school": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "languages": { "type": "string" }
+          },
+          "required": ["name", "languages"],
+          "additionalProperties": false
+        },
+        "benefits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "detail": { "type": "string" }
+            },
+            "required": ["title", "detail"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 4
+        }
+      },
+      "required": ["school", "benefits"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{school.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-sky-50 text-sky-900\">\n  <nav class=\"bg-white shadow-sm p-6 flex justify-between items-center\">\n    <div class=\"text-2xl font-black text-sky-600\">{{school.name}}</div>\n    <button class=\"bg-sky-600 text-white px-4 py-2 rounded-lg font-bold\">Book a Trial</button>\n  </nav>\n  <main class=\"max-w-5xl mx-auto py-16 px-6 text-center\">\n    <h1 class=\"text-5xl md:text-6xl font-extrabold mb-6\">Speak the World.</h1>\n    <p class=\"text-xl text-sky-700 mb-10 max-w-2xl mx-auto\">\n      Learn {{school.languages}} with native speakers and immersive methods.\n    </p>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 text-left\">\n      {{#each benefits}}\n      <div class=\"bg-white p-8 rounded-2xl shadow-sm border border-sky-100\">\n        <div class=\"w-12 h-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-2xl mb-6\">🌍</div>\n        <h3 class=\"text-xl font-bold mb-3\">{{this.title}}</h3>\n        <p class=\"text-sky-700\">{{this.detail}}</p>\n      </div>\n      {{/each}}\n    </div>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "f3a9e7d3-9012-477e-1098-cdef01234567",
+    "name": "Kindergarten / Preschool",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "kindergarten": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "welcome_message": { "type": "string" }
+          },
+          "required": ["name", "welcome_message"],
+          "additionalProperties": false
+        },
+        "activities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "emoji": { "type": "string" }
+            },
+            "required": ["name", "emoji"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 6
+        }
+      },
+      "required": ["kindergarten", "activities"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{kindergarten.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <style>@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap'); .fredoka { font-family: 'Fredoka One', cursive; } body { font-family: 'Nunito', sans-serif; }</style>\n</head>\n<body class=\"bg-yellow-50 text-gray-800\">\n  <header class=\"bg-white pt-10 pb-20 px-6 text-center rounded-b-[4rem] shadow-sm\">\n    <h1 class=\"text-5xl md:text-6xl fredoka text-orange-500 mb-4\">{{kindergarten.name}}</h1>\n    <p class=\"text-xl font-bold text-teal-600\">{{kindergarten.welcome_message}}</p>\n  </header>\n  \n  <section class=\"max-w-4xl mx-auto -mt-10 px-6\">\n    <div class=\"grid grid-cols-2 md:grid-cols-4 gap-4\">\n      {{#each activities}}\n      <div class=\"bg-white p-6 rounded-3xl shadow-md text-center border-4 border-transparent hover:border-orange-400 transition cursor-pointer\">\n        <div class=\"text-5xl mb-4\">{{this.emoji}}</div>\n        <h3 class=\"font-bold text-lg text-gray-700\">{{this.name}}</h3>\n      </div>\n      {{/each}}\n    </div>\n  </section>\n  \n  <div class=\"text-center mt-16 mb-16\">\n    <button class=\"bg-teal-500 text-white fredoka text-2xl px-10 py-4 rounded-full shadow-lg hover:bg-teal-600 hover:-translate-y-1 transition\">\n      Enroll Now!\n    </button>\n  </div>\n</body>\n</html>\n"
+  },
+  {
+    "id": "04baf8e4-0123-488f-0987-def012345678",
+    "name": "Bootcamps / Tech Skills",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "bootcamp": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "subtitle": { "type": "string" }
+          },
+          "required": ["name", "subtitle"],
+          "additionalProperties": false
+        },
+        "courses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "track": { "type": "string" },
+              "duration": { "type": "string" }
+            },
+            "required": ["track", "duration"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 4
+        }
+      },
+      "required": ["bootcamp", "courses"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{bootcamp.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <style>@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;800&display=swap'); body { font-family: 'Inter', sans-serif; } .mono { font-family: 'Fira Code', monospace; }</style>\n</head>\n<body class=\"bg-black text-white\">\n  <nav class=\"border-b border-gray-800 p-6 flex justify-between items-center\">\n    <div class=\"text-2xl font-extrabold tracking-tight\">{{bootcamp.name}}<span class=\"text-green-500\">_</span></div>\n    <a href=\"#\" class=\"mono text-sm text-gray-400 hover:text-white\">// Apply</a>\n  </nav>\n  <header class=\"max-w-5xl mx-auto py-24 px-6\">\n    <h1 class=\"text-6xl md:text-8xl font-black mb-8 leading-none tracking-tighter\">\n      Code Your <br><span class=\"text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500\">Future.</span>\n    </h1>\n    <p class=\"text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl\">\n      {{bootcamp.subtitle}}\n    </p>\n    <button class=\"mono bg-green-500 text-black px-8 py-4 font-bold text-lg hover:bg-green-400 transition\">\n      > Start Learning\n    </button>\n  </header>\n  <section class=\"max-w-5xl mx-auto px-6 py-12\">\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-6\">\n      {{#each courses}}\n      <div class=\"border border-gray-800 p-8 rounded-lg hover:border-gray-600 transition bg-gray-900\">\n        <h3 class=\"text-2xl font-bold mb-4\">{{this.track}}</h3>\n        <div class=\"mono text-green-400 text-sm mb-6\">Duration: {{this.duration}}</div>\n        <a href=\"#\" class=\"text-white font-bold underline decoration-green-500 underline-offset-4 hover:text-green-400\">View Syllabus</a>\n      </div>\n      {{/each}}\n    </div>\n  </section>\n</body>\n</html>\n"
+  }
+]

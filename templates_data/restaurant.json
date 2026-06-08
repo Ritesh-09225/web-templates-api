@@ -1,0 +1,182 @@
+[
+  {
+    "id": "26dc1a06-6789-4fa1-4321-f0123456789a",
+    "name": "Fine Dining Experience",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "restaurant": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "story": { "type": "string" }
+          },
+          "required": ["name", "story"],
+          "additionalProperties": false
+        },
+        "menu_highlights": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "dish": { "type": "string" },
+              "price": { "type": "string" }
+            },
+            "required": ["dish", "price"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 4
+        }
+      },
+      "required": ["restaurant", "menu_highlights"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{restaurant.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap\" rel=\"stylesheet\">\n  <style> .serif { font-family: 'Playfair Display', serif; } body { font-family: 'Lato', sans-serif; background-color: #0f0f0f; color: #f0e6d2; } </style>\n</head>\n<body>\n  <header class=\"min-h-[80vh] flex flex-col justify-center items-center text-center px-4 relative\">\n    <div class=\"absolute inset-0 bg-[url('https://images.unsplash.com/photo-1414235077428-338988a2e8c0?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-20\"></div>\n    <div class=\"relative z-10\">\n      <h1 class=\"text-6xl md:text-8xl serif tracking-wide mb-6 uppercase\">{{restaurant.name}}</h1>\n      <p class=\"text-lg md:text-xl tracking-widest uppercase text-gray-400 mb-10\">An exquisite culinary journey</p>\n      <button class=\"border border-[#c5a880] text-[#c5a880] px-8 py-3 uppercase tracking-widest hover:bg-[#c5a880] hover:text-black transition-colors\">Reservations</button>\n    </div>\n  </header>\n  <section class=\"max-w-4xl mx-auto py-24 px-6 text-center\">\n    <h2 class=\"text-3xl serif italic mb-8 text-[#c5a880]\">Our Story</h2>\n    <p class=\"text-gray-400 leading-loose md:text-lg\">\n      {{restaurant.story}}\n    </p>\n  </section>\n  <section class=\"bg-[#1a1a1a] py-24 px-6\">\n    <div class=\"max-w-3xl mx-auto\">\n      <h2 class=\"text-4xl serif text-center mb-16 uppercase tracking-widest\">Tasting Menu</h2>\n      <div class=\"space-y-8\">\n        {{#each menu_highlights}}\n        <div class=\"flex justify-between items-baseline border-b border-gray-800 pb-4\">\n          <h3 class=\"text-xl serif\">{{this.dish}}</h3>\n          <span class=\"text-[#c5a880] font-bold tracking-widest\">{{this.price}}</span>\n        </div>\n        {{/each}}\n      </div>\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "37ed2b17-7890-4fb2-3210-0123456789ab",
+    "name": "Casual Cafe & Coffee",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "cafe": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "location": { "type": "string" }
+          },
+          "required": ["name", "location"],
+          "additionalProperties": false
+        },
+        "specials": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item": { "type": "string" },
+              "description": { "type": "string" }
+            },
+            "required": ["item", "description"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 4
+        }
+      },
+      "required": ["cafe", "specials"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{cafe.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-[#faf9f6] text-amber-900 font-sans\">\n  <nav class=\"p-6 flex justify-between items-center max-w-6xl mx-auto\">\n    <div class=\"text-2xl font-black tracking-tighter\">{{cafe.name}}</div>\n    <div class=\"text-sm font-bold uppercase tracking-widest text-amber-700\">{{cafe.location}}</div>\n  </nav>\n  <main class=\"max-w-6xl mx-auto px-6 py-12 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-16 items-center\">\n    <div>\n      <h1 class=\"text-5xl md:text-7xl font-bold leading-tight mb-6 text-amber-950\">\n        Fresh Coffee.<br>Good Vibes.\n      </h1>\n      <p class=\"text-lg text-amber-800 mb-8\">\n        Your neighborhood spot for ethically sourced beans and homemade pastries.\n      </p>\n      <button class=\"bg-amber-800 text-white px-8 py-3 rounded-full font-bold shadow-md hover:bg-amber-900\">\n        Order Online\n      </button>\n    </div>\n    <div class=\"bg-amber-100 p-8 rounded-3xl\">\n      <h2 class=\"text-2xl font-bold mb-6 text-amber-950\">Today's Specials</h2>\n      <ul class=\"space-y-6\">\n        {{#each specials}}\n        <li>\n          <h3 class=\"font-bold text-lg text-amber-900\">{{this.item}}</h3>\n          <p class=\"text-amber-700 text-sm\">{{this.description}}</p>\n        </li>\n        {{/each}}\n      </ul>\n    </div>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "48fe3c28-8901-4fc3-2109-123456789abc",
+    "name": "Burger Joint / Fast Food",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "joint": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "slogan": { "type": "string" }
+          },
+          "required": ["name", "slogan"],
+          "additionalProperties": false
+        },
+        "combos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "price": { "type": "string" }
+            },
+            "required": ["name", "price"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 5
+        }
+      },
+      "required": ["joint", "combos"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{joint.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <style>@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;700&display=swap'); .bangers { font-family: 'Bangers', cursive; letter-spacing: 0.05em; }</style>\n</head>\n<body class=\"bg-red-600 text-white font-['Inter']\">\n  <header class=\"text-center py-12\">\n    <h1 class=\"text-7xl md:text-9xl bangers text-yellow-400 drop-shadow-md mb-2\">{{joint.name}}</h1>\n    <p class=\"text-2xl font-bold uppercase tracking-widest\">{{joint.slogan}}</p>\n  </header>\n  <section class=\"max-w-4xl mx-auto px-4 py-8\">\n    <div class=\"bg-white text-black p-8 rounded-3xl shadow-2xl border-4 border-yellow-400\">\n      <h2 class=\"bangers text-4xl text-red-600 text-center mb-8\">Combo Meals</h2>\n      <div class=\"grid grid-cols-1 md:grid-cols-2 gap-6\">\n        {{#each combos}}\n        <div class=\"flex justify-between items-center bg-gray-100 p-4 rounded-xl border-2 border-transparent hover:border-red-500 transition\">\n          <span class=\"font-bold text-lg\">{{this.name}}</span>\n          <span class=\"bg-yellow-400 text-red-700 font-black px-3 py-1 rounded\">{{this.price}}</span>\n        </div>\n        {{/each}}\n      </div>\n      <div class=\"mt-10 text-center\">\n        <button class=\"bangers text-2xl bg-red-600 text-white px-10 py-4 rounded-full shadow-lg hover:bg-red-700 hover:scale-105 transition-transform\">\n          Order Now!\n        </button>\n      </div>\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "590f4d39-9012-4fd4-1098-23456789abcd",
+    "name": "Artisan Pizzeria",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "pizzeria": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "established": { "type": "string" }
+          },
+          "required": ["name", "established"],
+          "additionalProperties": false
+        },
+        "pizzas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "ingredients": { "type": "string" }
+            },
+            "required": ["name", "ingredients"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 6
+        }
+      },
+      "required": ["pizzeria", "pizzas"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{pizzeria.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-stone-100 text-stone-900 font-serif\">\n  <header class=\"bg-stone-900 text-white text-center py-16\">\n    <div class=\"text-red-500 mb-4\">\n      <svg class=\"w-12 h-12 mx-auto\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z\"/><path d=\"M12 6c-3.31 0-6 2.69-6 6h12c0-3.31-2.69-6-6-6z\"/></svg>\n    </div>\n    <h1 class=\"text-5xl font-bold mb-2 uppercase tracking-widest\">{{pizzeria.name}}</h1>\n    <p class=\"text-stone-400 italic\">Est. {{pizzeria.established}}</p>\n  </header>\n  <main class=\"max-w-4xl mx-auto py-16 px-6\">\n    <h2 class=\"text-3xl text-center font-bold mb-12 border-b-2 border-red-600 pb-4 inline-block mx-auto flex w-max\">Wood-Fired Menu</h2>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10\">\n      {{#each pizzas}}\n      <div>\n        <h3 class=\"text-xl font-bold uppercase mb-1 flex justify-between\">\n          <span>{{this.name}}</span>\n        </h3>\n        <p class=\"text-stone-600 text-sm italic\">{{this.ingredients}}</p>\n      </div>\n      {{/each}}\n    </div>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "6a105e4a-0123-4fe5-0987-3456789abcde",
+    "name": "Healthy / Vegan Bowl",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "subtitle": { "type": "string" }
+          },
+          "required": ["name", "subtitle"],
+          "additionalProperties": false
+        },
+        "bowls": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "calories": { "type": "string" }
+            },
+            "required": ["title", "calories"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 4
+        }
+      },
+      "required": ["brand", "bowls"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{brand.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-green-50 text-gray-800 font-sans\">\n  <div class=\"min-h-screen flex flex-col\">\n    <header class=\"p-6 flex justify-between items-center bg-white shadow-sm\">\n      <div class=\"text-2xl font-bold text-green-700\">{{brand.name}}</div>\n      <button class=\"text-green-700 font-medium hover:text-green-900\">Order App</button>\n    </header>\n    <main class=\"flex-1 py-12 px-6 max-w-5xl mx-auto w-full\">\n      <div class=\"text-center mb-16\">\n        <h1 class=\"text-4xl md:text-6xl font-extrabold text-green-900 mb-4\">{{brand.subtitle}}</h1>\n        <p class=\"text-lg text-gray-600\">100% Plant-Based. Locally Sourced. Deliciously Made.</p>\n      </div>\n      <div class=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8\">\n        {{#each bowls}}\n        <div class=\"bg-white rounded-2xl overflow-hidden shadow-sm border border-green-100 hover:shadow-lg transition-shadow\">\n          <div class=\"aspect-square bg-green-200 flex items-center justify-center\">\n            <span class=\"text-green-600 text-4xl\">🥗</span>\n          </div>\n          <div class=\"p-6\">\n            <h3 class=\"text-xl font-bold mb-2\">{{this.title}}</h3>\n            <p class=\"text-sm text-green-600 font-semibold mb-4\">{{this.calories}} kcal</p>\n            <button class=\"w-full py-2 bg-green-100 text-green-700 rounded-lg font-bold hover:bg-green-200\">Add to Cart</button>\n          </div>\n        </div>\n        {{/each}}\n      </div>\n    </main>\n  </div>\n</body>\n</html>\n"
+  }
+]

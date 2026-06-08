@@ -1,0 +1,181 @@
+[
+  {
+    "id": "d1e7c5b1-1234-4abc-9876-abcdef123456",
+    "name": "Digital Marketing Agency",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "agency": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "tagline": { "type": "string" },
+            "about": { "type": "string" }
+          },
+          "required": ["name", "tagline", "about"],
+          "additionalProperties": false
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "description": { "type": "string" }
+            },
+            "required": ["title", "description"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": ["agency", "services"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{agency.name}} - Digital Marketing</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-gray-50 text-gray-900 font-sans\">\n  <header class=\"bg-white shadow-sm py-6\">\n    <div class=\"max-w-7xl mx-auto px-4 flex justify-between items-center\">\n      <h1 class=\"text-2xl font-bold text-indigo-600\">{{agency.name}}</h1>\n      <nav class=\"space-x-4\">\n        <a href=\"#\" class=\"text-gray-600 hover:text-indigo-600\">Services</a>\n        <a href=\"#\" class=\"text-gray-600 hover:text-indigo-600\">About</a>\n        <a href=\"#\" class=\"bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700\">Contact Us</a>\n      </nav>\n    </div>\n  </header>\n  <section class=\"py-20 text-center px-4\">\n    <h2 class=\"text-5xl font-extrabold tracking-tight text-gray-900 mb-4\">{{agency.tagline}}</h2>\n    <p class=\"mt-4 max-w-2xl text-xl text-gray-500 mx-auto\">{{agency.about}}</p>\n    <div class=\"mt-8\">\n      <a href=\"#\" class=\"bg-indigo-600 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-indigo-700\">Get Started</a>\n    </div>\n  </section>\n  <section class=\"py-16 bg-white\">\n    <div class=\"max-w-7xl mx-auto px-4\">\n      <h3 class=\"text-3xl font-bold text-center mb-12\">Our Services</h3>\n      <div class=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n        {{#each services}}\n        <div class=\"p-6 border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow\">\n          <h4 class=\"text-xl font-bold mb-2\">{{this.title}}</h4>\n          <p class=\"text-gray-600\">{{this.description}}</p>\n        </div>\n        {{/each}}\n      </div>\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "e2f8d6c2-2345-4bcd-8765-bcdef0123456",
+    "name": "Creative Design Studio",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "studio": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "vision": { "type": "string" }
+          },
+          "required": ["name", "vision"],
+          "additionalProperties": false
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "category": { "type": "string" }
+            },
+            "required": ["name", "category"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["studio", "projects"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{studio.name}} - Creative Studio</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-black text-white font-mono\">\n  <nav class=\"p-8 flex justify-between items-center\">\n    <div class=\"text-2xl font-bold tracking-tighter\">{{studio.name}}</div>\n    <a href=\"mailto:hello@studio.com\" class=\"border-b border-white hover:text-gray-400 hover:border-gray-400 transition-colors\">Let's Talk</a>\n  </nav>\n  <header class=\"px-8 py-24 md:py-32\">\n    <h1 class=\"text-4xl md:text-7xl font-bold leading-tight max-w-4xl\">{{studio.vision}}</h1>\n  </header>\n  <section class=\"px-8 py-16\">\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-12\">\n      {{#each projects}}\n      <div class=\"group cursor-pointer\">\n        <div class=\"aspect-[4/3] bg-gray-900 mb-4 overflow-hidden rounded-lg\">\n          <div class=\"w-full h-full bg-gray-800 group-hover:scale-105 transition-transform duration-500\"></div>\n        </div>\n        <h3 class=\"text-2xl font-bold mb-1\">{{this.name}}</h3>\n        <p class=\"text-gray-500 uppercase text-sm tracking-widest\">{{this.category}}</p>\n      </div>\n      {{/each}}\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "f3a9e7d3-3456-4cde-7654-cdef12345678",
+    "name": "PR & Communications",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "company": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "headline": { "type": "string" }
+          },
+          "required": ["name", "headline"],
+          "additionalProperties": false
+        },
+        "clients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" }
+            },
+            "required": ["name"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 6
+        }
+      },
+      "required": ["company", "clients"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{company.name}} | PR</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-[#f4f1ea] text-[#2c2c2c] font-serif\">\n  <div class=\"max-w-5xl mx-auto px-6 py-12\">\n    <header class=\"flex flex-col items-center text-center mb-20\">\n      <div class=\"text-sm uppercase tracking-widest mb-8 font-sans font-semibold\">{{company.name}}</div>\n      <h1 class=\"text-5xl md:text-6xl font-normal leading-tight max-w-3xl\">{{company.headline}}</h1>\n    </header>\n    <section class=\"border-t border-[#d1cec5] pt-16\">\n      <h2 class=\"text-center text-xs uppercase tracking-widest font-sans font-semibold mb-12 text-gray-500\">Trusted By</h2>\n      <div class=\"flex flex-wrap justify-center gap-8 md:gap-16 opacity-70\">\n        {{#each clients}}\n        <div class=\"text-xl md:text-2xl font-bold tracking-tight\">{{this.name}}</div>\n        {{/each}}\n      </div>\n    </section>\n  </div>\n</body>\n</html>\n"
+  },
+  {
+    "id": "04baf8e4-4567-4def-6543-def234567890",
+    "name": "SEO & Growth Agency",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "hero": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "subtitle": { "type": "string" }
+          },
+          "required": ["title", "subtitle"],
+          "additionalProperties": false
+        },
+        "stats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": { "type": "string" },
+              "label": { "type": "string" }
+            },
+            "required": ["value", "label"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": ["hero", "stats"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Growth Agency</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-white text-gray-800 font-sans\">\n  <main>\n    <section class=\"bg-emerald-600 text-white py-24 px-6\">\n      <div class=\"max-w-4xl mx-auto text-center\">\n        <h1 class=\"text-5xl md:text-6xl font-bold mb-6\">{{hero.title}}</h1>\n        <p class=\"text-xl md:text-2xl text-emerald-100 mb-10\">{{hero.subtitle}}</p>\n        <button class=\"bg-white text-emerald-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-emerald-50 transition\">Get a Free Audit</button>\n      </div>\n    </section>\n    <section class=\"py-20 px-6\">\n      <div class=\"max-w-5xl mx-auto\">\n        <div class=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n          {{#each stats}}\n          <div class=\"text-center p-8 border-2 border-gray-100 rounded-2xl\">\n            <div class=\"text-4xl font-black text-emerald-600 mb-2\">{{this.value}}</div>\n            <div class=\"text-gray-500 font-medium uppercase tracking-wide\">{{this.label}}</div>\n          </div>\n          {{/each}}\n        </div>\n      </div>\n    </section>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "15cb09f5-5678-4ef0-5432-ef0123456789",
+    "name": "Web Development Agency",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "agency": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "description": { "type": "string" }
+          },
+          "required": ["name", "description"],
+          "additionalProperties": false
+        },
+        "tech_stack": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tech": { "type": "string" }
+            },
+            "required": ["tech"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 6
+        }
+      },
+      "required": ["agency", "tech_stack"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{agency.name}} - Web Dev</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-gray-900 text-gray-100 font-sans\">\n  <div class=\"min-h-screen flex flex-col justify-center items-center px-6 py-12\">\n    <div class=\"max-w-3xl w-full text-center\">\n      <div class=\"inline-block mb-4 px-3 py-1 rounded-full bg-blue-900/50 text-blue-400 text-sm font-semibold border border-blue-800\">\n        Software Agency\n      </div>\n      <h1 class=\"text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight\">\n        {{agency.name}}\n      </h1>\n      <p class=\"text-lg md:text-xl text-gray-400 mb-12\">\n        {{agency.description}}\n      </p>\n      <div class=\"bg-gray-800 rounded-xl p-8 border border-gray-700\">\n        <h3 class=\"text-sm text-gray-500 uppercase tracking-widest font-semibold mb-6\">Our Tech Stack</h3>\n        <div class=\"flex flex-wrap justify-center gap-4\">\n          {{#each tech_stack}}\n          <span class=\"px-4 py-2 bg-gray-700 text-gray-300 rounded-lg font-medium\">{{this.tech}}</span>\n          {{/each}}\n        </div>\n      </div>\n    </div>\n  </div>\n</body>\n</html>\n"
+  }
+]

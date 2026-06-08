@@ -1,0 +1,181 @@
+[
+  {
+    "id": "7b216f5b-1234-4ff6-9876-456789abcdef",
+    "name": "Luxury Property Listing",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "property": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "price": { "type": "string" },
+            "address": { "type": "string" }
+          },
+          "required": ["title", "price", "address"],
+          "additionalProperties": false
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "feature": { "type": "string" }
+            },
+            "required": ["feature"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 6
+        }
+      },
+      "required": ["property", "features"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{property.title}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-white text-gray-900 font-sans\">\n  <div class=\"relative h-[70vh] w-full bg-gray-900\">\n    <div class=\"absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-60\"></div>\n    <div class=\"absolute bottom-0 left-0 p-8 md:p-16\">\n      <h1 class=\"text-5xl md:text-7xl font-bold text-white mb-4 drop-shadow-lg\">{{property.title}}</h1>\n      <div class=\"text-2xl text-white opacity-90 drop-shadow-md\">{{property.address}}</div>\n    </div>\n  </div>\n  <div class=\"max-w-6xl mx-auto px-6 py-16\">\n    <div class=\"flex flex-col md:flex-row justify-between items-start mb-16\">\n      <div>\n        <div class=\"text-4xl font-bold text-gray-900 mb-2\">{{property.price}}</div>\n        <p class=\"text-gray-500\">Exclusive Listing</p>\n      </div>\n      <button class=\"mt-6 md:mt-0 bg-black text-white px-8 py-4 uppercase tracking-widest text-sm font-bold hover:bg-gray-800 transition\">\n        Schedule Viewing\n      </button>\n    </div>\n    <div>\n      <h2 class=\"text-2xl font-bold mb-6\">Property Features</h2>\n      <ul class=\"grid grid-cols-2 md:grid-cols-3 gap-6\">\n        {{#each features}}\n        <li class=\"flex items-center text-gray-700\">\n          <svg class=\"w-5 h-5 mr-3 text-gray-400\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path fill-rule=\"evenodd\" d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\" clip-rule=\"evenodd\"/></svg>\n          {{this.feature}}\n        </li>\n        {{/each}}\n      </ul>\n    </div>\n  </div>\n</body>\n</html>\n"
+  },
+  {
+    "id": "8c32706c-2345-4007-8765-56789abcdef0",
+    "name": "Real Estate Agency Home",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "agency": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "headline": { "type": "string" }
+          },
+          "required": ["name", "headline"],
+          "additionalProperties": false
+        },
+        "listings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "address": { "type": "string" },
+              "price": { "type": "string" }
+            },
+            "required": ["address", "price"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 4
+        }
+      },
+      "required": ["agency", "listings"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{agency.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-gray-50 text-gray-800\">\n  <nav class=\"bg-white shadow-sm p-6\">\n    <div class=\"max-w-7xl mx-auto flex justify-between items-center\">\n      <div class=\"text-2xl font-bold text-blue-900\">{{agency.name}}</div>\n      <a href=\"#\" class=\"text-blue-600 font-medium hover:underline\">Contact Agents</a>\n    </div>\n  </nav>\n  <header class=\"py-20 px-6 text-center max-w-4xl mx-auto\">\n    <h1 class=\"text-5xl font-extrabold text-gray-900 mb-6\">{{agency.headline}}</h1>\n    <div class=\"bg-white p-4 rounded-lg shadow-lg flex gap-4 max-w-2xl mx-auto\">\n      <input type=\"text\" placeholder=\"Search city, zip, or neighborhood\" class=\"flex-1 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500\">\n      <button class=\"bg-blue-600 text-white px-6 py-2 rounded font-bold hover:bg-blue-700\">Search</button>\n    </div>\n  </header>\n  <section class=\"max-w-7xl mx-auto px-6 py-12\">\n    <h2 class=\"text-3xl font-bold mb-10 text-gray-900\">Featured Properties</h2>\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n      {{#each listings}}\n      <div class=\"bg-white rounded-xl shadow overflow-hidden group\">\n        <div class=\"aspect-[4/3] bg-gray-200\"></div>\n        <div class=\"p-6\">\n          <h3 class=\"text-xl font-bold text-gray-900 mb-2\">{{this.price}}</h3>\n          <p class=\"text-gray-600 mb-4\">{{this.address}}</p>\n          <button class=\"w-full border border-blue-600 text-blue-600 py-2 rounded font-medium group-hover:bg-blue-600 group-hover:text-white transition\">\n            View Details\n          </button>\n        </div>\n      </div>\n      {{#each}}\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "9d43817d-3456-4118-7654-6789abcdef01",
+    "name": "Apartment Complex Promo",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "complex": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "description": { "type": "string" }
+          },
+          "required": ["name", "description"],
+          "additionalProperties": false
+        },
+        "amenities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" }
+            },
+            "required": ["name"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 6
+        }
+      },
+      "required": ["complex", "amenities"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{complex.name}} Living</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-stone-50 text-stone-800\">\n  <div class=\"flex flex-col md:flex-row min-h-screen\">\n    <div class=\"md:w-1/2 p-12 md:p-24 flex flex-col justify-center bg-white\">\n      <h1 class=\"text-5xl lg:text-7xl font-serif mb-6 text-stone-900\">{{complex.name}}</h1>\n      <p class=\"text-lg text-stone-500 mb-10 leading-relaxed\">\n        {{complex.description}}\n      </p>\n      <button class=\"self-start bg-stone-900 text-white px-8 py-4 tracking-widest uppercase text-sm hover:bg-stone-800\">\n        Apply Now\n      </button>\n    </div>\n    <div class=\"md:w-1/2 bg-stone-200 p-12 md:p-24 flex flex-col justify-center\">\n      <h2 class=\"text-3xl font-serif mb-8 text-stone-900\">Resort-Style Amenities</h2>\n      <ul class=\"space-y-4\">\n        {{#each amenities}}\n        <li class=\"flex items-center text-lg text-stone-700\">\n          <span class=\"w-2 h-2 bg-stone-400 rounded-full mr-4\"></span>\n          {{this.name}}\n        </li>\n        {{/each}}\n      </ul>\n    </div>\n  </div>\n</body>\n</html>\n"
+  },
+  {
+    "id": "ae54928e-4567-4229-6543-789abcdef012",
+    "name": "Commercial Real Estate",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "building": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "space_available": { "type": "string" }
+          },
+          "required": ["title", "space_available"],
+          "additionalProperties": false
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string" },
+              "value": { "type": "string" }
+            },
+            "required": ["label", "value"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 4
+        }
+      },
+      "required": ["building", "details"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{building.title}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-slate-900 text-slate-100 font-sans\">\n  <header class=\"border-b border-slate-800 py-6 px-8 flex justify-between items-center\">\n    <div class=\"text-xl font-bold tracking-tight text-white\">{{building.title}}</div>\n    <div class=\"text-slate-400 text-sm\">Commercial Leasing</div>\n  </header>\n  <main class=\"max-w-5xl mx-auto py-20 px-8\">\n    <h1 class=\"text-6xl font-extrabold text-white mb-6 leading-tight\">Premium Office Space <br><span class=\"text-blue-500\">Available Now</span></h1>\n    <p class=\"text-2xl text-slate-400 mb-16\">{{building.space_available}}</p>\n    \n    <div class=\"grid grid-cols-2 md:grid-cols-4 gap-8 mb-16\">\n      {{#each details}}\n      <div class=\"bg-slate-800 p-6 rounded-lg border border-slate-700\">\n        <div class=\"text-sm text-slate-400 uppercase tracking-wider mb-2\">{{this.label}}</div>\n        <div class=\"text-2xl font-bold text-white\">{{this.value}}</div>\n      </div>\n      {{/each}}\n    </div>\n\n    <button class=\"bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-10 rounded-lg transition\">\n      Download Brochure\n    </button>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "bf65a39f-5678-433a-5432-89abcdef0123",
+    "name": "Vacation Rental Profile",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "rental": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "location": { "type": "string" },
+            "price_per_night": { "type": "string" }
+          },
+          "required": ["name", "location", "price_per_night"],
+          "additionalProperties": false
+        },
+        "highlights": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "highlight": { "type": "string" }
+            },
+            "required": ["highlight"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 4
+        }
+      },
+      "required": ["rental", "highlights"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{rental.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-white text-gray-900\">\n  <main class=\"max-w-6xl mx-auto px-4 py-8\">\n    <h1 class=\"text-3xl md:text-4xl font-bold mb-2\">{{rental.name}}</h1>\n    <div class=\"text-gray-500 mb-8 flex items-center\">\n      <span class=\"font-medium underline cursor-pointer\">{{rental.location}}</span>\n    </div>\n\n    <div class=\"grid grid-cols-4 gap-2 h-96 mb-12 rounded-xl overflow-hidden\">\n      <div class=\"col-span-2 row-span-2 bg-gray-200\"></div>\n      <div class=\"bg-gray-300\"></div>\n      <div class=\"bg-gray-200\"></div>\n      <div class=\"bg-gray-300\"></div>\n      <div class=\"bg-gray-200\"></div>\n    </div>\n\n    <div class=\"flex flex-col md:flex-row gap-12\">\n      <div class=\"flex-1\">\n        <h2 class=\"text-2xl font-bold mb-6\">What this place offers</h2>\n        <div class=\"grid grid-cols-2 gap-y-4\">\n          {{#each highlights}}\n          <div class=\"flex items-center text-gray-700\">\n             <span class=\"mr-3 text-xl\">✨</span> {{this.highlight}}\n          </div>\n          {{/each}}\n        </div>\n      </div>\n      <div class=\"w-full md:w-1/3\">\n        <div class=\"bg-white border border-gray-200 p-6 rounded-xl shadow-lg sticky top-8\">\n          <div class=\"text-2xl font-bold mb-4\">\n            {{rental.price_per_night}} <span class=\"text-base font-normal text-gray-500\">night</span>\n          </div>\n          <button class=\"w-full bg-rose-600 text-white py-3 rounded-lg font-bold hover:bg-rose-700 transition\">\n            Reserve\n          </button>\n        </div>\n      </div>\n    </div>\n  </main>\n</body>\n</html>\n"
+  }
+]

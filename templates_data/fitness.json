@@ -1,0 +1,181 @@
+[
+  {
+    "id": "15cb09f5-1234-4990-9876-ef0123456789",
+    "name": "Modern Gym",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "gym": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "headline": { "type": "string" }
+          },
+          "required": ["name", "headline"],
+          "additionalProperties": false
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "desc": { "type": "string" }
+            },
+            "required": ["title", "desc"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 4
+        }
+      },
+      "required": ["gym", "features"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{gym.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <style>@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;500&display=swap'); .oswald { font-family: 'Oswald', sans-serif; } body { font-family: 'Roboto', sans-serif; }</style>\n</head>\n<body class=\"bg-black text-white\">\n  <div class=\"relative min-h-screen flex flex-col\">\n    <div class=\"absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-40\"></div>\n    <div class=\"absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent\"></div>\n    \n    <header class=\"relative z-10 p-6 flex justify-between items-center\">\n      <div class=\"text-3xl oswald font-bold tracking-widest text-red-600 uppercase\">{{gym.name}}</div>\n      <button class=\"border-2 border-red-600 text-red-600 font-bold px-6 py-2 uppercase hover:bg-red-600 hover:text-white transition\">Join Now</button>\n    </header>\n    \n    <main class=\"relative z-10 flex-1 flex flex-col justify-center px-6 md:px-20 max-w-7xl mx-auto w-full\">\n      <h1 class=\"text-6xl md:text-9xl oswald font-bold uppercase mb-6 leading-none max-w-4xl\">\n        {{gym.headline}}\n      </h1>\n      <p class=\"text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl\">\n        State-of-the-art equipment. Elite trainers. Unstoppable community.\n      </p>\n      <div class=\"grid grid-cols-1 md:grid-cols-3 gap-8 mt-auto mb-12\">\n        {{#each features}}\n        <div class=\"bg-zinc-900/80 p-6 border-l-4 border-red-600 backdrop-blur-sm\">\n          <h3 class=\"text-2xl oswald font-bold uppercase mb-2\">{{this.title}}</h3>\n          <p class=\"text-gray-400\">{{this.desc}}</p>\n        </div>\n        {{/each}}\n      </div>\n    </main>\n  </div>\n</body>\n</html>\n"
+  },
+  {
+    "id": "26dc1a06-2345-4001-8765-f0123456789a",
+    "name": "Yoga / Pilates Studio",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "studio": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "mantra": { "type": "string" }
+          },
+          "required": ["name", "mantra"],
+          "additionalProperties": false
+        },
+        "classes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "time": { "type": "string" }
+            },
+            "required": ["name", "time"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 5
+        }
+      },
+      "required": ["studio", "classes"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{studio.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <link href=\"https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400&display=swap\" rel=\"stylesheet\">\n  <style> .serif { font-family: 'Cormorant Garamond', serif; } body { font-family: 'Montserrat', sans-serif; } </style>\n</head>\n<body class=\"bg-[#f9f7f5] text-[#5c5651]\">\n  <nav class=\"py-8 text-center\">\n    <div class=\"text-3xl serif tracking-widest uppercase\">{{studio.name}}</div>\n  </nav>\n  <header class=\"max-w-4xl mx-auto py-20 px-6 text-center\">\n    <h1 class=\"text-5xl md:text-7xl serif italic mb-8 text-[#8c8279]\">{{studio.mantra}}</h1>\n    <p class=\"text-lg tracking-wide leading-relaxed max-w-2xl mx-auto mb-12\">\n      Find your center in our calm, sunlit spaces. We offer a variety of classes for all levels.\n    </p>\n    <button class=\"border border-[#8c8279] text-[#8c8279] px-10 py-3 uppercase tracking-widest text-sm hover:bg-[#8c8279] hover:text-white transition\">\n      View Schedule\n    </button>\n  </header>\n  <section class=\"max-w-4xl mx-auto px-6 py-16\">\n    <h2 class=\"text-2xl uppercase tracking-widest text-center mb-12 border-b border-[#e0dcd9] pb-4\">Upcoming Classes</h2>\n    <div class=\"space-y-6\">\n      {{#each classes}}\n      <div class=\"flex justify-between items-center bg-white p-6 rounded shadow-sm\">\n        <div class=\"text-xl serif\">{{this.name}}</div>\n        <div class=\"text-sm tracking-widest uppercase text-[#8c8279]\">{{this.time}}</div>\n      </div>\n      {{/each}}\n    </div>\n  </section>\n</body>\n</html>\n"
+  },
+  {
+    "id": "37ed2b17-3456-4112-7654-0123456789ab",
+    "name": "Personal Trainer Profile",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "trainer": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "specialty": { "type": "string" }
+          },
+          "required": ["name", "specialty"],
+          "additionalProperties": false
+        },
+        "packages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "price": { "type": "string" }
+            },
+            "required": ["name", "price"],
+            "additionalProperties": false
+          },
+          "minItems": 2,
+          "maxItems": 3
+        }
+      },
+      "required": ["trainer", "packages"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{trainer.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-stone-900 text-stone-100 font-sans\">\n  <div class=\"max-w-5xl mx-auto px-6 py-12 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center\">\n    <div class=\"order-2 md:order-1\">\n      <div class=\"text-emerald-500 font-bold tracking-widest uppercase mb-2\">Personal Training</div>\n      <h1 class=\"text-5xl md:text-7xl font-extrabold mb-4\">{{trainer.name}}</h1>\n      <p class=\"text-2xl text-stone-400 mb-8\">{{trainer.specialty}}</p>\n      <p class=\"text-lg text-stone-500 leading-relaxed mb-10\">\n        I help busy professionals transform their bodies and build sustainable, healthy habits. No BS, just results.\n      </p>\n      <button class=\"bg-emerald-500 text-stone-900 font-bold py-4 px-8 rounded-lg hover:bg-emerald-400 transition w-full md:w-auto\">\n        Book Consultation\n      </button>\n    </div>\n    <div class=\"order-1 md:order-2\">\n      <div class=\"aspect-[3/4] bg-stone-800 rounded-2xl overflow-hidden relative\">\n        <div class=\"absolute inset-0 bg-[url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1500&auto=format&fit=crop')] bg-cover bg-center grayscale opacity-80 hover:grayscale-0 transition duration-700\"></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"bg-stone-950 py-20 px-6\">\n    <div class=\"max-w-5xl mx-auto\">\n      <h2 class=\"text-3xl font-bold mb-10 text-center\">Training Packages</h2>\n      <div class=\"grid grid-cols-1 md:grid-cols-2 gap-8\">\n        {{#each packages}}\n        <div class=\"bg-stone-900 p-8 rounded-2xl border border-stone-800\">\n          <h3 class=\"text-2xl font-bold mb-2\">{{this.name}}</h3>\n          <div class=\"text-emerald-500 text-3xl font-black mb-6\">{{this.price}}</div>\n          <button class=\"w-full py-3 border border-stone-700 rounded-lg hover:bg-stone-800 transition\">\n            Select Plan\n          </button>\n        </div>\n        {{/each}}\n      </div>\n    </div>\n  </div>\n</body>\n</html>\n"
+  },
+  {
+    "id": "48fe3c28-4567-4223-6543-123456789abc",
+    "name": "Crossfit Box",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "box": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "location": { "type": "string" }
+          },
+          "required": ["name", "location"],
+          "additionalProperties": false
+        },
+        "workouts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "day": { "type": "string" },
+              "wod": { "type": "string" }
+            },
+            "required": ["day", "wod"],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 5
+        }
+      },
+      "required": ["box", "workouts"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{box.name}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  <style>@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap'); .anton { font-family: 'Anton', sans-serif; }</style>\n</head>\n<body class=\"bg-neutral-100 text-neutral-900\">\n  <header class=\"bg-neutral-900 text-white text-center py-20 px-4 clip-path-slant\">\n    <h1 class=\"text-6xl md:text-8xl anton uppercase tracking-wider mb-2\">{{box.name}}</h1>\n    <div class=\"text-yellow-500 font-bold tracking-widest uppercase\">{{box.location}}</div>\n  </header>\n  <main class=\"max-w-4xl mx-auto py-16 px-6\">\n    <h2 class=\"text-4xl anton text-center mb-12 uppercase text-neutral-800\">WOD Schedule</h2>\n    <div class=\"space-y-4\">\n      {{#each workouts}}\n      <div class=\"bg-white p-6 shadow-md border-l-8 border-neutral-900 flex flex-col md:flex-row md:items-center gap-4\">\n        <div class=\"md:w-1/4 font-black text-xl uppercase\">{{this.day}}</div>\n        <div class=\"md:w-3/4 text-neutral-700 font-medium\">{{this.wod}}</div>\n      </div>\n      {{/each}}\n    </div>\n    <div class=\"text-center mt-16\">\n      <button class=\"bg-yellow-500 text-neutral-900 px-10 py-4 font-black text-xl uppercase hover:bg-yellow-400 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]\">\n        Drop In\n      </button>\n    </div>\n  </main>\n</body>\n</html>\n"
+  },
+  {
+    "id": "590f4d39-5678-4334-5432-23456789abcd",
+    "name": "Online Fitness Coaching",
+    "framework": "tailwind-html",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "program": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "focus": { "type": "string" }
+          },
+          "required": ["title", "focus"],
+          "additionalProperties": false
+        },
+        "benefits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "benefit": { "type": "string" }
+            },
+            "required": ["benefit"],
+            "additionalProperties": false
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["program", "benefits"],
+      "additionalProperties": false
+    },
+    "raw_html": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{program.title}}</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-indigo-600 text-white font-sans\">\n  <div class=\"max-w-4xl mx-auto px-6 py-20 text-center\">\n    <div class=\"inline-block bg-white text-indigo-600 font-bold px-4 py-1 rounded-full mb-8 text-sm\">\n      100% Online Coaching\n    </div>\n    <h1 class=\"text-5xl md:text-7xl font-extrabold mb-6 tracking-tight\">\n      {{program.title}}\n    </h1>\n    <p class=\"text-2xl text-indigo-200 mb-12\">\n      Focus: <span class=\"text-white font-semibold\">{{program.focus}}</span>\n    </p>\n    \n    <div class=\"bg-white text-indigo-900 rounded-3xl p-8 md:p-12 text-left shadow-2xl\">\n      <h2 class=\"text-2xl font-bold mb-8 text-center\">What's Included in the App</h2>\n      <ul class=\"grid grid-cols-1 md:grid-cols-2 gap-6 mb-10\">\n        {{#each benefits}}\n        <li class=\"flex items-start\">\n          <svg class=\"w-6 h-6 text-green-500 mr-3 shrink-0\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 13l4 4L19 7\"></path></svg>\n          <span class=\"font-medium\">{{this.benefit}}</span>\n        </li>\n        {{/each}}\n      </ul>\n      <button class=\"w-full bg-indigo-600 text-white font-bold text-xl py-4 rounded-xl hover:bg-indigo-700 shadow-lg\">\n        Start Your Journey\n      </button>\n    </div>\n  </div>\n</body>\n</html>\n"
+  }
+]
