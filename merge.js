@@ -4,7 +4,7 @@ const path = require('path');
 const dataDir = path.join(__dirname, 'templates_data');
 const outputFile = path.join(__dirname, 'templates.json');
 
-const files = ['saas.json', 'local.json', 'portfolio.json', 'ecommerce.json', 'blog.json'];
+const files = fs.readdirSync(dataDir).filter(file => file.endsWith('.json'));
 
 let allTemplates = [];
 
